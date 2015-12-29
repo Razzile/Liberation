@@ -28,7 +28,7 @@ That's it!
 ## Example
 
 ```Logos
-#include "Liberation.h"
+#include <Liberation.h>
 
 void Init() {
     Settings settings = "myPrefs.plist";
