@@ -15,7 +15,7 @@ To install  Liberation, please follow these steps:
 
 ## Usage
 
-To use Liberation, follow these steps:
+To use Liberation, follow these steps: 
 
 * Inlcude <Liberation.h> in your Tweak.xm (or any other (obj)c++ file)
 * Use liberation functions in your tweak
