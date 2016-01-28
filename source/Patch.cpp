@@ -105,7 +105,6 @@ inline namespace MemoryManager {
     {
         address &= ~1;
         mach_port_t port = mach_task_self();
-        //address += _dyld_get_image_vmaddr_slide(0);
         vm_size_t sz;
         return vm_read_overwrite(port, address, size, (vm_address_t)outData, &sz);
     }
@@ -123,7 +122,7 @@ inline namespace MemoryManager {
         status = vm_protect(port, text_base, size, false, VM_PROT_READ | VM_PROT_WRITE | VM_PROT_COPY);
 
         /* check if the protection fails */
-        if (status != KERN_SUCCESS) exit(0); // change me
+        if (status != KERN_SUCCESS) return status;
 
         /* write code to memory */
         if (port == mach_task_self()) {
@@ -224,8 +223,6 @@ Hook::Hook(void *funcPtr, void *hookPtr, void **origPtr)
 	this->origData = new unsigned char[patchSize];
 
 	ReadAddress((vm_address_t)hookFuncAddr, origData, patchSize);
-    for (int i = 0; i < patchSize; i++)
-        printf("%02x", origData[i]);
 }
 
 Hook::Hook(void *funcPtr, void *hookPtr) : Hook(funcPtr, hookPtr, 0)
@@ -256,7 +253,5 @@ bool Hook::Apply()
 
 bool Hook::Reset()
 {
-    for (int i = 0; i < patchSize; i++)
-        printf("%02x", origData[i]);
 	return WriteAddress((vm_address_t)hookFuncAddr, origData, patchSize);
 }
