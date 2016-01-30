@@ -21,7 +21,7 @@ To use Liberation, follow these steps:
 * Use liberation functions in your tweak
 * Add ```YOURPROJECTHERE_CFLAGS += -std=c++11``` to your makefile to enable c++11 (required by Liberation)
 * (Optional) Add ```TARGET_STRIP_FLAGS = -u -r -s /dev/null``` to the top of your makefile to strip your dylib (Recommended as Liberation will otherwise contain a lot of info about your tweak)
-* Add ```YOURPROJECTHERE_LIBRARIES = Liberation``` to your Makefile
+* Add ```YOURPROJECTHERE_LIBRARIES = Liberation c++``` to your Makefile
 
 That's it!
 
