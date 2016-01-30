@@ -3,6 +3,7 @@
 
 #include <CoreFoundation/CoreFoundation.h>
 
+inline namespace utils {
 class Settings {
 public:
     Settings(const char *path);
@@ -106,4 +107,5 @@ private:
     const char *path;
     CFDictionaryRef dict;
 };
+} // utils
 #endif
