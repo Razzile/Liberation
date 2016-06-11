@@ -1,4 +1,3 @@
-
 //--------------------------------//
 //-----------Liberation-----------//
 //-------Created-by-Razzile-------//
@@ -6,39 +5,23 @@
 //------Don't mess with this------//
 //------Unless you are smart------//
 //--------------------------------//
-//------------Licenses------------//
-//--------------------------------//
-//Copyright (c) 2016, Razzile
-
-//Permission to use, copy, modify, and/or distribute this software for any purpose
-//with or without fee is hereby granted, provided that the above copyright notice
-//and this permission notice appear in all copies.
-
-//THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-//REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
-//FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-//INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
-//OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-//TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
-//THIS SOFTWARE.
 
 #ifndef __Settings__
 #define __Settings__
 
 #include <CoreFoundation/CoreFoundation.h>
 
-inline namespace utils {
+inline namespace liberation {
 class Settings {
 public:
-    Settings(const char *path);
+    Settings(const char* path);
     ~Settings();
 
     int GetPrefInt(const char* key);
     float GetPrefFloat(const char* key);
     bool GetPrefBool(const char* key);
 
-    __attribute__((noinline))
-    bool reloadSettings();
+    __attribute__((noinline)) bool reloadSettings();
 
     class settings_proxy {
     public:
@@ -50,13 +33,9 @@ public:
             float asFloat;
         } value;
 
-        enum ValueType {
-            Int,
-            Bool,
-            Float
-        } valueType;
+        enum ValueType { Int, Bool, Float } valueType;
 
-        Settings *container;
+        Settings* container;
 
         settings_proxy(const char* _key) {
             key = (char*)malloc(strlen(_key));
@@ -78,25 +57,20 @@ public:
             valueType = Bool;
         }
 
-
-        __attribute__((noinline))
-        operator int() {
+        __attribute__((noinline)) operator int() {
             return container->GetPrefInt(key);
         }
 
-        __attribute__((noinline))
-        operator float() {
+        __attribute__((noinline)) operator float() {
             return container->GetPrefFloat(key);
         }
 
-        __attribute__((noinline))
-        operator bool() {
+        __attribute__((noinline)) operator bool() {
             return container->GetPrefBool(key);
         }
 
-        settings_proxy& operator= (const settings_proxy &source) {
-            switch(source.valueType)
-            {
+        settings_proxy& operator=(const settings_proxy& source) {
+            switch (source.valueType) {
                 case Int: {
                     set(source.value.asInt);
                     break;
@@ -117,19 +91,19 @@ public:
         void set(float value);
 
         ~settings_proxy() {
-            if (key != NULL)
-                free(key);
+            if (key != NULL) free(key);
         }
     };
 
-    settings_proxy operator[] (const char* key) {
+    settings_proxy operator[](const char* key) {
         settings_proxy proxy(key);
         proxy.container = this;
         return proxy;
     }
+
 private:
-    const char *path;
+    const char* path;
     CFDictionaryRef dict;
 };
-} // utils
+}  // liberation
 #endif

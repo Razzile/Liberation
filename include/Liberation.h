@@ -7,192 +7,191 @@
 //--------------------------------//
 //------------Licenses------------//
 //--------------------------------//
-//Copyright (c) 2016, Razzile
+// Copyright (c) 2016, Razzile
 
-//Permission to use, copy, modify, and/or distribute this software for any purpose
-//with or without fee is hereby granted, provided that the above copyright notice
-//and this permission notice appear in all copies.
+// Permission to use, copy, modify, and/or distribute this software for any
+// purpose
+// with or without fee is hereby granted, provided that the above copyright
+// notice
+// and this permission notice appear in all copies.
 
-//THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-//REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
-//FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-//INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
-//OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-//TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
-//THIS SOFTWARE.
+// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+// REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+// AND
+// FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+// LOSS
+// OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+// OTHER
+// TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
+// OF
+// THIS SOFTWARE.
 
 #if __cplusplus <= 199711L
-  #error Please enable C++11 for use with Liberation
+#error Please enable C++11 for use with Liberation
 #endif
 
-#include <string>
-#include <iostream>
-#include <sstream>
-#include <sys/types.h>
-#include <mach/mach.h>
 #include <CoreFoundation/CoreFoundation.h>
+#include <mach/mach.h>
+#include <sstream>
+#include <string>
+#include <sys/types.h>
+#include <vector>
 
 #define hidden __attribute__((visibility("hidden")))
 
 /* Container namespace for classes */
-inline namespace utils {
+inline namespace liberation {
 
-	class Patch {
-	public:
-		~Patch();
-		Patch(unsigned long long addr, uint data);
-		Patch(unsigned long long addr, std::string data);
+using bytes = std::vector<uint8_t>;
 
-		bool Apply();
-		bool Reset();
+enum class ARMv7Mode { ARM, Thumb };
 
-	private:
-		unsigned long long patchAddr;
-		unsigned char *patchData;
-		unsigned char *origData;
-		size_t patchSize;
-	};
+class Patch {
+public:
+  static Patch *CreatePatch(vm_address_t address, uint32_t data);
+  static Patch *CreatePatch(vm_address_t address, std::string data);
+  static Patch *CreateRawPatch(vm_address_t addr, char *data, size_t len);
+  static Patch *CreateInstrPatch(vm_address_t address, std::string instr,
+                                 ARMv7Mode mode = ARMv7Mode::Thumb);
 
-	class Hook {
-	public:
-		~Hook();
-		Hook(std::string symbol, void *hookPtr, void **origPtr);
-		Hook(std::string symbol, void *hookPtr);
-		Hook(void *hookFuncAddr, void *hookPtr, void **origPtr);
-		Hook(void *hookFuncAddr, void *hookPtr);
-	    Hook(vm_address_t hookFuncAddr, void *hookPtr, void **origPtr);
-	    Hook(vm_address_t hookFuncAddr, void *hookPtr);
+  virtual bool Apply();
+  virtual bool Reset();
 
-		template <typename T> hidden
-		Hook(void *hookFuncAddress, T *hookPtr, T **origPtr) :
-			Hook(hookFuncAddress, (void*)hookPtr, (void**)origPtr)
-		{}
+private:
+  Patch() = default;
+  Patch(vm_address_t addr, char *data, size_t len);
+  ~Patch();
 
-		template <typename T> hidden
-		Hook(void *hookFuncAddress, T *hookPtr) :
-			Hook(hookFuncAddress, (void*)hookPtr)
-		{}
+protected:
+  vm_address_t _address;
+  bytes _patchBytes;
+  bytes _origBytes;
+  size_t _patchSize;
+};
 
-		template <typename T> hidden
-		Hook(vm_address_t hookFuncAddr, T *hookPtr, T **origPtr) :
-			Hook((void*)(hookFuncAddr), (void*)hookPtr, (void**)origPtr)
-		{}
+class Hook {
+public:
+  ~Hook();
+  Hook(std::string symbol, void *hookPtr, void **origPtr);
+  Hook(std::string symbol, void *hookPtr);
+  Hook(void *hookFuncAddr, void *hookPtr, void **origPtr);
+  Hook(void *hookFuncAddr, void *hookPtr);
+  Hook(vm_address_t hookFuncAddr, void *hookPtr, void **origPtr);
+  Hook(vm_address_t hookFuncAddr, void *hookPtr);
 
-		template <typename T> hidden
-		Hook(vm_address_t hookFuncAddr, T *hookPtr)  :
-			Hook((void*)(hookFuncAddr), (void*)hookPtr)
-		{}
+  template <typename T>
+  hidden Hook(void *hookFuncAddress, T *hookPtr, T **origPtr)
+      : Hook(hookFuncAddress, (void *)hookPtr, (void **)origPtr) {}
 
-		bool Apply();
-		bool Reset();
-	private:
-		std::string symbol;
-		void *hookPtr;
-		void **origPtr;
-		void *hookFuncAddr;
-		unsigned char *origData;
-		size_t patchSize;
-	};
-	class Settings {
-	public:
-	    Settings(const char *path);
-	    ~Settings();
+  template <typename T>
+  hidden Hook(void *hookFuncAddress, T *hookPtr)
+      : Hook(hookFuncAddress, (void *)hookPtr) {}
 
-	    int GetPrefInt(const char* key);
-	    float GetPrefFloat(const char* key);
-	    bool GetPrefBool(const char* key);
+  template <typename T>
+  hidden Hook(vm_address_t hookFuncAddr, T *hookPtr, T **origPtr)
+      : Hook((void *)(hookFuncAddr), (void *)hookPtr, (void **)origPtr) {}
 
-	    __attribute__((noinline))
-	    bool reloadSettings();
+  template <typename T>
+  hidden Hook(vm_address_t hookFuncAddr, T *hookPtr)
+      : Hook((void *)(hookFuncAddr), (void *)hookPtr) {}
 
-	    class settings_proxy {
-	    public:
-	        char* key;
+  bool Apply();
+  bool Reset();
 
-	        union Value {
-	            int asInt;
-	            bool asBool;
-	            float asFloat;
-	        } value;
+private:
+  std::string _symbol;
+  void *_hookPtr;
+  void **_origPtr;
+  void *_hookFuncAddr;
+};
 
-	        enum ValueType {
-	            Int,
-	            Bool,
-	            Float
-	        } valueType;
+class Settings {
+public:
+  Settings(const char *path);
+  ~Settings();
 
-	        Settings *container;
+  int GetPrefInt(const char *key);
+  float GetPrefFloat(const char *key);
+  bool GetPrefBool(const char *key);
 
-	        hidden settings_proxy(const char* _key) {
-	            key = (char*)malloc(strlen(_key));
-	            strcpy(key, _key);
-	        }
+  __attribute__((noinline)) bool reloadSettings();
 
-	        hidden settings_proxy(int val) {
-	            value.asInt = val;
-	            valueType = Int;
-	        }
+  class settings_proxy {
+  public:
+    char *key;
 
-	        hidden settings_proxy(float val) {
-	            value.asFloat = val;
-	            valueType = Float;
-	        }
+    union Value {
+      int asInt;
+      bool asBool;
+      float asFloat;
+    } value;
 
-	        hidden settings_proxy(bool val) {
-	            value.asBool = val;
-	            valueType = Bool;
-	        }
+    enum ValueType { Int, Bool, Float } valueType;
 
-	        hidden
-	        operator int() {
-	            return container->GetPrefInt(key);
-	        }
+    Settings *container;
 
-	        hidden
-	        operator float() {
-	            return container->GetPrefFloat(key);
-	        }
+    hidden settings_proxy(const char *_key) {
+      key = (char *)malloc(strlen(_key));
+      strcpy(key, _key);
+    }
 
-	        hidden
-	        operator bool() {
-	            return container->GetPrefBool(key);
-	        }
+    hidden settings_proxy(int val) {
+      value.asInt = val;
+      valueType = Int;
+    }
 
-	        hidden settings_proxy& operator= (const settings_proxy &source) {
-	            switch(source.valueType)
-	            {
-	                case Int: {
-	                    set(source.value.asInt);
-	                    break;
-	                }
-	                case Bool: {
-	                    set(source.value.asBool);
-	                    break;
-	                }
-	                case Float: {
-	                    set(source.value.asFloat);
-	                    break;
-	                }
-	            }
-	            return *this;
-	        }
-	        void set(bool value);
-	        void set(int value);
-	        void set(float value);
+    hidden settings_proxy(float val) {
+      value.asFloat = val;
+      valueType = Float;
+    }
 
-	        hidden ~settings_proxy() {
-	            if (key != NULL)
-	                free(key);
-	        }
-	    };
+    hidden settings_proxy(bool val) {
+      value.asBool = val;
+      valueType = Bool;
+    }
 
-	    hidden  settings_proxy operator[] (const char* key) {
-	        settings_proxy proxy(key);
-	        proxy.container = this;
-	        return proxy;
-	    }
-	private:
-	    const char *path;
-	    CFDictionaryRef dict;
-	};
+    hidden operator int() { return container->GetPrefInt(key); }
+
+    hidden operator float() { return container->GetPrefFloat(key); }
+
+    hidden operator bool() { return container->GetPrefBool(key); }
+
+    hidden settings_proxy &operator=(const settings_proxy &source) {
+      switch (source.valueType) {
+      case Int: {
+        set(source.value.asInt);
+        break;
+      }
+      case Bool: {
+        set(source.value.asBool);
+        break;
+      }
+      case Float: {
+        set(source.value.asFloat);
+        break;
+      }
+      }
+      return *this;
+    }
+    void set(bool value);
+    void set(int value);
+    void set(float value);
+
+    hidden ~settings_proxy() {
+      if (key != NULL)
+        free(key);
+    }
+  };
+
+  hidden settings_proxy operator[](const char *key) {
+    settings_proxy proxy(key);
+    proxy.container = this;
+    return proxy;
+  }
+
+private:
+  const char *path;
+  CFDictionaryRef dict;
+};
 } // utils

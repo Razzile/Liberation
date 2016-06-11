@@ -1,0 +1,12 @@
+﻿---
+BasedOnStyle: Google
+AllowShortFunctionsOnASingleLine: Inline
+IndentWidth: '4'
+NamespaceIndentation: None
+SpaceAfterCStyleCast: 'false'
+TabWidth: '4'
+UseTab: Never
+ConstructorInitializerIndentWidth: 0
+AccessModifierOffset: -4
+
+...
