@@ -195,17 +195,20 @@ Patch *Patch::CreateInstrPatch(vm_address_t address, std::string instr,
     size_t count;
     unsigned char *encode;
     size_t size;
+    int ks_mode = 0;
 
 #ifdef __LP64__
     ks_arch arch = KS_ARCH_ARM64;
+    ks_mode = KS_MODE_LITTLE_ENDIAN;
 #else
     ks_arch arch = KS_ARCH_ARM;
     if (mode == ARMv7Mode::ARM)
-        err = ks_open(arch, KS_MODE_ARM, &ks);
+        ks_mode = KS_MODE_ARM;
     else
-        err = ks_open(arch, KS_MODE_THUMB, &ks);
+        ks_mode = KS_MODE_THUMB;
 #endif
 
+    err = ks_open(arch, ks_mode, &ks);
     if (err != KS_ERR_OK) {
         return nullptr;
     }
