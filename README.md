@@ -1,6 +1,6 @@
 Liberation
 ========
-
+Please note liberation is due for a project reformat. Including a *proper* build script. Ignore the mess for now.
 Liberation (formerly civ3) is a next generation code injection library for iOS cheaters everywhere.
 Unlike liberation's predecessor writeData, which was pretty much never updated and had tons of random edits floating around the net, Liberation will be updated regularly in this repo, and contributions are welcome from anyone (even if you aren't a member of ioscheaters)
 
@@ -15,7 +15,7 @@ To install  Liberation, please follow these steps:
 
 ## Usage
 
-To use Liberation, follow these steps: 
+To use Liberation, follow these steps:
 
 * Inlcude <Liberation.h> in your Tweak.xm (or any other (obj)c++ file)
 * Use liberation functions in your tweak
