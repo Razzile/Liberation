@@ -1,6 +1,6 @@
 Liberation
 ========
-Please note liberation is due for a project reformat. Including a *proper* build script. Ignore the mess for now.
+Please note liberation is due for a project reformat, meaning all code is subject to change and Including a *proper* build script. Ignore the mess for now.
 
 Liberation (formerly civ3) is a next generation code injection library for iOS cheaters everywhere.
 Unlike liberation's predecessor writeData, which was pretty much never updated and had tons of random edits floating around the net, Liberation will be updated regularly in this repo, and contributions are welcome from anyone (even if you aren't a member of ioscheaters)
@@ -21,7 +21,7 @@ To use Liberation, follow these steps:
 * Inlcude <Liberation.h> in your Tweak.xm (or any other (obj)c++ file)
 * Use liberation functions in your tweak
 * Add ```YOURPROJECTHERE_CFLAGS += -std=c++11``` to your makefile to enable c++11 (required by Liberation)
-* (Optional) Add ```TARGET_STRIP_FLAGS = -u -r -s /dev/null``` to the top of your makefile to strip your dylib (Recommended as Liberation will otherwise contain a lot of info about your tweak)
+* (Optional) Add ```TARGET_STRIP_FLAGS = -u -r -s /dev/null``` to the top of your makefile to strip your dylib (Recommended as Liberation will otherwise contain a lot of info about your tweak). Must build using ```make DEBUG=0```
 * Add ```YOURPROJECTHERE_LIBRARIES = Liberation c++``` to your Makefile
 
 That's it!
@@ -34,16 +34,20 @@ That's it!
 void Init() {
     Settings settings = "myPrefs.plist";
 
-    Patch goldPatch = Patch(0x12345, 0x0000A0E1);
-    Patch healthPatch = Patch(0x12346, "1EFF2FE1");
+    // create patch from ARM hex
+    Patch *goldPatch = Patch::CreatePatch(0x12345, 0x0000A0E1);
+    // create patch from instruction string
+    Patch *healthPatch = Patch::CreateInstrPatch(0x12346, "MOV RO, R7; BX LR");
+
+    // create a hook patch
     Hook xpHook = Hook("__symbol", someFunc, &someOtherFunc);
 
     bool gold = settings["kGold"];
     if (gold) {
-        goldPatch.Apply(); // applies patch
+        goldPatch->Apply(); // applies patch
     }
     else {
-        goldPatch.Reset(); // resets patch
+        goldPatch->Reset(); // resets patch
     }
     int aVal = settings["kVal"]; // accessing an int from the plist
     float floatVal = settings["kFloat"]; // accessing a float from the plist
