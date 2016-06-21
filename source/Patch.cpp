@@ -223,7 +223,8 @@ Patch *Patch::CreateInstrPatch(vm_address_t address, std::string instr,
     return patch;
 }
 
-Patch::Patch(vm_address_t addr, char *data, size_t len) : _address(addr) {
+Patch::Patch(vm_address_t addr, char *data, size_t len)
+: _address(addr), _patchSize(len) {
     uint8_t *orig = new uint8_t[len];
     ReadAddress(addr, orig, len);
 
