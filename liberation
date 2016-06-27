@@ -1,0 +1,34 @@
+#!/bin/bash
+
+function help {
+    echo "Help:"
+    echo "$0 setup - setup build files"
+    echo "$0 build - build liberation"
+    echo "$0 clean - clean project"
+}
+
+MODE=$1
+
+echo "This build script is not really meant for public use. It may work, it may not."
+
+if [[ "$MODE" == "build" ]]; then
+    mkdir build
+    cmake . -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DLLVM_TARGETS_TO_BUILD="AArch64;ARM" -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=../ios.cmake -DIOS_PLATFORM=OS -DPYTHON_EXECUTABLE=`which python` -B./build
+    make -C build
+    libtool -static lib/* -o lib/libLiberation.a
+
+elif [[ "$MODE" == "clean" ]]; then
+    make -C build clean
+    rm -rf build/*
+    rm -rf lib/*
+
+elif [[ "$MODE" == "setup" ]]; then
+    git submodule init
+    git submodule update
+
+elif [[ "$MODE" == "format" ]]; then
+    echo "not implemented yet. If anyone sees this DM me on twitter"
+
+else
+    help
+fi
