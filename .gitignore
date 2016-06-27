@@ -3,7 +3,6 @@
 /source/*.a
 /build
 /lib
-/keystone
 /source/*.sh
 /source/.DS_Store
 /source/.clang_complete
