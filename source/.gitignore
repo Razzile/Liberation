@@ -1,2 +1,3 @@
-*.a
-*.o
+.DS_Store
+.clang_complete
+.build_static.sh

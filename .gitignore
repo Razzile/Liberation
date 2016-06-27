@@ -1,3 +1,6 @@
 .DS_Store
 /source/*.o
 /source/*.a
+/build
+/lib
+/keystone

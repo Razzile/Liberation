@@ -1,18 +1,17 @@
 Liberation
 ========
-Please note liberation is due for a project reformat, meaning all code is subject to change and Including a *proper* build script. Ignore the mess for now.
 
 Liberation (formerly civ3) is a next generation code injection library for iOS cheaters everywhere.
-Unlike liberation's predecessor writeData, which was pretty much never updated and had tons of random edits floating around the net, Liberation will be updated regularly in this repo, and contributions are welcome from anyone (even if you aren't a member of ioscheaters)
+Unlike liberation's predecessor writeData, which was hardly ever updated and had tons of random edits floating around the net, Liberation will be updated regularly in this repo, and contributions are welcome from anyone (even if you aren't a member of ioscheaters)
 
 ## Installation
 
 To install  Liberation, please follow these steps:
 
 * Download Liberation from the [Releases](https://github.com/iOSCheaters/Liberation/releases) page.
-* Copy the lib folder contents to $THEOS/lib
-* Copy the include folder to $THEOS/include
-* (Optional) copy the nic template folder to $THEOS/templates/ios/liberation
+* Copy the lib folder contents to `$THEOS/lib`
+* Copy the include folder to `$THEOS/include`
+* (Optional) copy the nic template folder to `$THEOS/templates/ios/liberation`
 
 ## Usage
 
@@ -21,7 +20,7 @@ To use Liberation, follow these steps:
 * Inlcude <Liberation.h> in your Tweak.xm (or any other (obj)c++ file)
 * Use liberation functions in your tweak
 * Add ```YOURPROJECTHERE_CFLAGS += -std=c++11``` to your makefile to enable c++11 (required by Liberation)
-* (Optional) Add ```TARGET_STRIP_FLAGS = -u -r -s /dev/null``` to the top of your makefile to strip your dylib (Recommended as Liberation will otherwise contain a lot of info about your tweak). Must build using ```make DEBUG=0```
+* (Optional) Add ```TARGET_STRIP_FLAGS = -u -r -s /dev/null``` to the top of your makefile to strip your dylib (Recommended as Liberation will otherwise contain a lot of info about your tweak). Must build using ```make DEBUG=0``` for symbols to be stripped
 * Add ```YOURPROJECTHERE_LIBRARIES = Liberation c++``` to your Makefile
 
 That's it!
@@ -32,7 +31,7 @@ That's it!
 #include <Liberation.h>
 
 void Init() {
-    Settings settings = "myPrefs.plist";
+    Settings settings("myPrefs.plist");
 
     // create patch from ARM hex
     Patch *goldPatch = Patch::CreatePatch(0x12345, 0x0000A0E1);
@@ -55,6 +54,18 @@ void Init() {
     xpHook.Reset(); // resets hook
 }
 ```
+
+## Building Liberation
+Liberation currently isn't really built for self building. That said it should still be possible for you
+to build it yourself. (Please note you need a Mac with xcode and cmake installed)
+
+To build liberation, clone this repo and cd to it, then run these commands:
+
+`./liberation setup`
+
+`./liberation build`
+
+When built, there should be a `libLiberation.a` file in the /lib folder. Just place this in your theos lib folder to use.
 
 ## License
 

@@ -20,21 +20,21 @@ Settings::Settings(const char *path) : path(path) {
         temp = temp + ".plist";
     }
     path = temp.data();
-    dict = (CFDictionaryRef)[NSDictionary dictionaryWithContentsOfFile:[NSString stringWithUTF8String:path]];
+    dict = (__bridge CFDictionaryRef)[NSDictionary dictionaryWithContentsOfFile:[NSString stringWithUTF8String:path]];
 }
 
 Settings::~Settings() {
-    [(NSDictionary *)dict release];
+    CFRelease(dict);
 }
 
 int Settings::GetPrefInt(const char *key) {
-    return [[(NSDictionary *)dict objectForKey:[NSString stringWithUTF8String:key]] intValue];
+    return [[(__bridge NSDictionary *)dict objectForKey:[NSString stringWithUTF8String:key]] intValue];
 }
 
 float Settings::GetPrefFloat(const char *key) {
-    return [[(NSDictionary *)dict objectForKey:[NSString stringWithUTF8String:key]] floatValue];
+    return [[(__bridge NSDictionary *)dict objectForKey:[NSString stringWithUTF8String:key]] floatValue];
 }
 
 bool Settings::GetPrefBool(const char *key) {
-    return [[(NSDictionary *)dict objectForKey:[NSString stringWithUTF8String:key]] boolValue];
+    return [[(__bridge NSDictionary *)dict objectForKey:[NSString stringWithUTF8String:key]] boolValue];
 }
