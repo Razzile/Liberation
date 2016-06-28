@@ -218,7 +218,7 @@ Patch *Patch::CreateInstrPatch(vm_address_t address, std::string instr,
         return nullptr;
     } else {
         patch = new Patch(address, (char *)encode, size);
-        free(encode);
+        ks_free(encode);
     }
     return patch;
 }
