@@ -122,9 +122,6 @@ static always_inline kern_return_t WriteAddress(vm_address_t address,
     kern_return_t status;
     mach_port_t port = mach_task_self();
 
-    // sanitize address
-    address &= ~1;
-
     vm_address_t text_base = address;
     /* set memory protections to allow us writing code there */
     status = vm_protect(port, text_base, size, false,
@@ -158,6 +155,9 @@ Patch *Patch::CreatePatch(vm_address_t address, uint32_t data) {
         data = OSSwapInt32(data);
         size = sizeof(int);
     }
+
+    // sanitize address
+    address &= ~1;
     return new Patch(address, (char *)&data, size);
 }
 
@@ -177,6 +177,9 @@ Patch *Patch::CreatePatch(vm_address_t address, std::string data) {
         sscanf(tempHex + 2 * i, "%2X", &n);
         patchData[i] = (unsigned char)n;
     }
+
+    // sanitize address
+    address &= ~1;
     patch = new Patch(address, (char *)patchData, patchSize);
     delete[] patchData;
 
@@ -196,6 +199,9 @@ Patch *Patch::CreateInstrPatch(vm_address_t address, std::string instr,
     unsigned char *encode;
     size_t size;
     int ks_mode = 0;
+
+    // sanitize address
+    address &= ~1;
 
 #ifdef __LP64__
     ks_arch arch = KS_ARCH_ARM64;
