@@ -13,7 +13,7 @@ echo "This build script is not really meant for public use. It may work, it may 
 
 if [[ "$MODE" == "build" ]]; then
     mkdir build
-    cmake . -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DLLVM_TARGETS_TO_BUILD="AArch64;ARM" -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=../ios.cmake -DIOS_PLATFORM=OS -DPYTHON_EXECUTABLE=`which python` -B./build
+    cmake . -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DLLVM_TARGETS_TO_BUILD="AArch64;ARM" -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=ios.cmake -DIOS_PLATFORM=OS -DIOS_DEPLOYMENT_TARGET=5.0 -DPYTHON_EXECUTABLE=`which python` -B./build
     make -C build
     libtool -static lib/* -o lib/libLiberation.a
 
