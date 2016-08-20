@@ -7,7 +7,7 @@
 #include "ARMv7Host.h"
 
 int ARMv7Host::HardwareBreakpointCount() {
-#ifdef _ARM_ARCH_7
+#ifdef __arm__
   {
     static int count = -1;
     if (count != -1)
@@ -27,7 +27,7 @@ int ARMv7Host::HardwareBreakpointCount() {
 }
 
 int ARMv7Host::HardwareWatchpointCount() {
-#ifdef _ARM_ARCH_7
+#ifdef __arm__
   {
     static int count = -1;
     if (count != -1)
@@ -46,9 +46,14 @@ int ARMv7Host::HardwareWatchpointCount() {
 #endif
 }
 
+// TODO: this is ugly, find a cleaner way
+#ifdef __arm__
+
 Host *Host::CurrentHost() {
   static Host *host = nullptr;
   if (!host)
     host = new ARMv7Host();
   return host;
 }
+
+#endif

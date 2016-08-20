@@ -31,9 +31,14 @@ int AArch64Host::HardwareWatchpointCount() {
   return 0;
 }
 
+// TODO: this is ugly, find a cleaner way
+#ifdef __arm64__
+
 Host *Host::CurrentHost() {
   static Host *host = nullptr;
   if (!host)
     host = new AArch64Host();
   return host;
 }
+
+#endif
