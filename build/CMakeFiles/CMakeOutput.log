@@ -1,0 +1,41 @@
+The target system is: Darwin - 9.3 - 
+The host system is: Darwin - 16.0.0 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang 
+Build flags: -miphoneos-version-min=5.0;-fobjc-abi-version=2;-fobjc-arc;-miphoneos-version-min=5.0;-fobjc-abi-version=2;-fobjc-arc;
+Id flags: 
+
+The output was:
+0
+ld: warning: URGENT: building for iOS simulator, but linking against dylib (/System/Library/Frameworks//Foundation.framework/Foundation) built for OSX. Note: This will be an error in the future.ld: warning: URGENT: building for iOS simulator, but linking against dylib (/usr/lib/libobjc.dylib) built for OSX. Note: This will be an error in the future.
+
+ld: warning: URGENT: building for iOS simulator, but linking against dylib (/usr/lib/libSystem.dylib) built for OSX. Note: This will be an error in the future.
+ld: warning: linking ObjC for iOS Simulator, but dylib (/System/Library/Frameworks//Foundation.framework/Foundation) was compiled for MacOSX
+ld: warning: linking ObjC for iOS Simulator, but dylib (/usr/lib/libobjc.dylib) was compiled for MacOSX
+ld: warning: linking ObjC for iOS Simulator, but dylib (/System/Library/Frameworks//CoreFoundation.framework/CoreFoundation) was compiled for MacOSX
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is AppleClang, found in "/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles/3.5.2/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ 
+Build flags: -miphoneos-version-min=5.0;-fvisibility=hidden;-fvisibility-inlines-hidden;-fobjc-abi-version=2;-fobjc-arc;-miphoneos-version-min=5.0;-fvisibility=hidden;-fvisibility-inlines-hidden;-fobjc-abi-version=2;-fobjc-arc;
+Id flags: 
+
+The output was:
+0
+ld: warning: ld: warning: URGENT: building for iOS simulator, but linking against dylib (/System/Library/Frameworks//Foundation.framework/Foundation) built for OSX. Note: This will be an error in the future.URGENT: building for iOS simulator, but linking against dylib (/usr/lib/libobjc.dylib) built for OSX. Note: This will be an error in the future.
+
+ld: warning: URGENT: building for iOS simulator, but linking against dylib (/usr/lib/libstdc++.dylib) built for OSX. Note: This will be an error in the future.
+ld: warning: URGENT: building for iOS simulator, but linking against dylib (/usr/lib/libSystem.dylib) built for OSX. Note: This will be an error in the future.
+ld: warning: linking ObjC for iOS Simulator, but dylib (/System/Library/Frameworks//Foundation.framework/Foundation) was compiled for MacOSX
+ld: warning: linking ObjC for iOS Simulator, but dylib (/usr/lib/libobjc.dylib) was compiled for MacOSX
+ld: warning: linking ObjC for iOS Simulator, but dylib (/System/Library/Frameworks//CoreFoundation.framework/CoreFoundation) was compiled for MacOSX
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is AppleClang, found in "/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles/3.5.2/CompilerIdCXX/a.out"
+
