@@ -13,9 +13,6 @@ public:
 
   virtual bool Apply();
   virtual bool Reset();
-
-  // XXX: make these static?
-  int HardwareSlotsLeft();
 };
 
 class ARMv7SoftwareBreakpoint : public Breakpoint {

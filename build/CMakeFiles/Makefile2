@@ -60,6 +60,38 @@ CMAKE_SOURCE_DIR = /Users/callum/mods-n-stuff/coding/Projects/liberation_reginje
 CMAKE_BINARY_DIR = /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build
 
 #=============================================================================
+# Target rules for target CMakeFiles/install.dir
+
+# All Build rule for target.
+CMakeFiles/install.dir/all:
+	$(MAKE) -f CMakeFiles/install.dir/build.make CMakeFiles/install.dir/depend
+	$(MAKE) -f CMakeFiles/install.dir/build.make CMakeFiles/install.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles --progress-num= "Built target install"
+.PHONY : CMakeFiles/install.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/install.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/install.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles 0
+.PHONY : CMakeFiles/install.dir/rule
+
+# Convenience name for target.
+install: CMakeFiles/install.dir/rule
+
+.PHONY : install
+
+# clean rule for target.
+CMakeFiles/install.dir/clean:
+	$(MAKE) -f CMakeFiles/install.dir/build.make CMakeFiles/install.dir/clean
+.PHONY : CMakeFiles/install.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/install.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/reginject.dir
 
 # All Build rule for target.

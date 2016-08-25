@@ -11,14 +11,15 @@
 #include "ThreadState.h"
 
 class x86_64ThreadState : public ThreadState {
- public:
+public:
   x86_64ThreadState(thread_state_t state) : ThreadState(state) {}
 
   virtual std::string Description() override;
   virtual Register &operator[](std::string key) override;
   virtual bool Load() override;
+  virtual vm_address_t CurrentAddress() override;
 
- private:
+private:
 };
 
 #endif /* _x86_64ThreadState_ */

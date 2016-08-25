@@ -18,10 +18,10 @@ include_directories("${CMAKE_SOURCE_DIR}/src")
 add_executable(reginject src/main.cc src/Process.cc src/ExceptionHandler.cc
                 src/mach_excServer.c src/mach_excUser.c
                 src/BreakpointHandler.cc src/breakpoint.cc src/AArch64/AArch64Host.cc
-            src/ARMv7/ARMv7Host.cc src/ARMv7/ARMv7Breakpoint.cc src/AArch64/AArch64Breakpoint.cc)
+                src/ARMv7/ARMv7Host.cc src/ARMv7/ARMv7Breakpoint.cc src/AArch64/AArch64Breakpoint.cc)
 
-add_custom_command(TARGET ${PROJECT_NAME}
-    POST_BUILD
+add_custom_target(install
+    COMMAND make
     COMMAND ldid -S ${CMAKE_SOURCE_DIR}/build/reginject
     COMMAND scp ${CMAKE_SOURCE_DIR}/build/reginject root@$ENV{THEOS_DEVICE_IP}:/usr/bin/reginject
 )

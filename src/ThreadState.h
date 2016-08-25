@@ -33,6 +33,7 @@ public:
   virtual Register &operator[](std::string key) = 0;
   virtual bool Load() = 0;
   virtual bool Save() = 0;
+  virtual vm_address_t CurrentAddress() = 0;
 
 protected:
   thread_state_t _state;

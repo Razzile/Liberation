@@ -45,6 +45,7 @@ CMakeFiles/reginject.dir/src/breakpoint.cc.o: ../src/Process.h
 CMakeFiles/reginject.dir/src/breakpoint.cc.o: ../src/ThreadState.h
 CMakeFiles/reginject.dir/src/breakpoint.cc.o: ../src/breakpoint.cc
 
+CMakeFiles/reginject.dir/src/main.cc.o: ../src/ExceptionHandler.h
 CMakeFiles/reginject.dir/src/main.cc.o: ../src/Process.h
 CMakeFiles/reginject.dir/src/main.cc.o: ../src/ThreadState.h
 CMakeFiles/reginject.dir/src/main.cc.o: ../src/main.cc

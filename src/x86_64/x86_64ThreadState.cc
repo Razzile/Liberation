@@ -52,3 +52,7 @@ ThreadState::Register &x86_64ThreadState::operator[](std::string key) {
   throw std::runtime_error("invalid register called on thread state: " +
                            this->Description() + "\n");
 }
+
+vm_address_t x86_64ThreadState::CurrentAddress() {
+  return (*this)["RIP"]; // a bit hacky
+}

@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named install
+
+# Build rule for target.
+install: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 install
+.PHONY : install
+
+# fast build rule for target.
+install/fast:
+	$(MAKE) -f CMakeFiles/install.dir/build.make CMakeFiles/install.dir/build
+.PHONY : install/fast
+
+#=============================================================================
 # Target rules for targets named reginject
 
 # Build rule for target.
@@ -428,6 +441,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... install"
 	@echo "... reginject"
 	@echo "... src/AArch64/AArch64Breakpoint.o"
 	@echo "... src/AArch64/AArch64Breakpoint.i"

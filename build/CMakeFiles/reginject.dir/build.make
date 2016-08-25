@@ -60,15 +60,15 @@ include CMakeFiles/reginject.dir/flags.make
 CMakeFiles/reginject.dir/src/main.cc.o: CMakeFiles/reginject.dir/flags.make
 CMakeFiles/reginject.dir/src/main.cc.o: ../src/main.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/reginject.dir/src/main.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/main.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/main.cc
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/main.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/main.cc
 
 CMakeFiles/reginject.dir/src/main.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/reginject.dir/src/main.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/main.cc > CMakeFiles/reginject.dir/src/main.cc.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/main.cc > CMakeFiles/reginject.dir/src/main.cc.i
 
 CMakeFiles/reginject.dir/src/main.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/reginject.dir/src/main.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/main.cc -o CMakeFiles/reginject.dir/src/main.cc.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/main.cc -o CMakeFiles/reginject.dir/src/main.cc.s
 
 CMakeFiles/reginject.dir/src/main.cc.o.requires:
 
@@ -84,15 +84,15 @@ CMakeFiles/reginject.dir/src/main.cc.o.provides.build: CMakeFiles/reginject.dir/
 CMakeFiles/reginject.dir/src/Process.cc.o: CMakeFiles/reginject.dir/flags.make
 CMakeFiles/reginject.dir/src/Process.cc.o: ../src/Process.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/reginject.dir/src/Process.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/Process.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/Process.cc
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/Process.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/Process.cc
 
 CMakeFiles/reginject.dir/src/Process.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/reginject.dir/src/Process.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/Process.cc > CMakeFiles/reginject.dir/src/Process.cc.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/Process.cc > CMakeFiles/reginject.dir/src/Process.cc.i
 
 CMakeFiles/reginject.dir/src/Process.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/reginject.dir/src/Process.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/Process.cc -o CMakeFiles/reginject.dir/src/Process.cc.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/Process.cc -o CMakeFiles/reginject.dir/src/Process.cc.s
 
 CMakeFiles/reginject.dir/src/Process.cc.o.requires:
 
@@ -108,15 +108,15 @@ CMakeFiles/reginject.dir/src/Process.cc.o.provides.build: CMakeFiles/reginject.d
 CMakeFiles/reginject.dir/src/ExceptionHandler.cc.o: CMakeFiles/reginject.dir/flags.make
 CMakeFiles/reginject.dir/src/ExceptionHandler.cc.o: ../src/ExceptionHandler.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/reginject.dir/src/ExceptionHandler.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/ExceptionHandler.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ExceptionHandler.cc
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/ExceptionHandler.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ExceptionHandler.cc
 
 CMakeFiles/reginject.dir/src/ExceptionHandler.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/reginject.dir/src/ExceptionHandler.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ExceptionHandler.cc > CMakeFiles/reginject.dir/src/ExceptionHandler.cc.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ExceptionHandler.cc > CMakeFiles/reginject.dir/src/ExceptionHandler.cc.i
 
 CMakeFiles/reginject.dir/src/ExceptionHandler.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/reginject.dir/src/ExceptionHandler.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ExceptionHandler.cc -o CMakeFiles/reginject.dir/src/ExceptionHandler.cc.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ExceptionHandler.cc -o CMakeFiles/reginject.dir/src/ExceptionHandler.cc.s
 
 CMakeFiles/reginject.dir/src/ExceptionHandler.cc.o.requires:
 
@@ -132,15 +132,15 @@ CMakeFiles/reginject.dir/src/ExceptionHandler.cc.o.provides.build: CMakeFiles/re
 CMakeFiles/reginject.dir/src/mach_excServer.c.o: CMakeFiles/reginject.dir/flags.make
 CMakeFiles/reginject.dir/src/mach_excServer.c.o: ../src/mach_excServer.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/reginject.dir/src/mach_excServer.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/reginject.dir/src/mach_excServer.c.o   -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/mach_excServer.c
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/reginject.dir/src/mach_excServer.c.o   -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/mach_excServer.c
 
 CMakeFiles/reginject.dir/src/mach_excServer.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/reginject.dir/src/mach_excServer.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/mach_excServer.c > CMakeFiles/reginject.dir/src/mach_excServer.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/mach_excServer.c > CMakeFiles/reginject.dir/src/mach_excServer.c.i
 
 CMakeFiles/reginject.dir/src/mach_excServer.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/reginject.dir/src/mach_excServer.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/mach_excServer.c -o CMakeFiles/reginject.dir/src/mach_excServer.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/mach_excServer.c -o CMakeFiles/reginject.dir/src/mach_excServer.c.s
 
 CMakeFiles/reginject.dir/src/mach_excServer.c.o.requires:
 
@@ -156,15 +156,15 @@ CMakeFiles/reginject.dir/src/mach_excServer.c.o.provides.build: CMakeFiles/regin
 CMakeFiles/reginject.dir/src/mach_excUser.c.o: CMakeFiles/reginject.dir/flags.make
 CMakeFiles/reginject.dir/src/mach_excUser.c.o: ../src/mach_excUser.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/reginject.dir/src/mach_excUser.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/reginject.dir/src/mach_excUser.c.o   -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/mach_excUser.c
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/reginject.dir/src/mach_excUser.c.o   -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/mach_excUser.c
 
 CMakeFiles/reginject.dir/src/mach_excUser.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/reginject.dir/src/mach_excUser.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/mach_excUser.c > CMakeFiles/reginject.dir/src/mach_excUser.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/mach_excUser.c > CMakeFiles/reginject.dir/src/mach_excUser.c.i
 
 CMakeFiles/reginject.dir/src/mach_excUser.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/reginject.dir/src/mach_excUser.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/mach_excUser.c -o CMakeFiles/reginject.dir/src/mach_excUser.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/mach_excUser.c -o CMakeFiles/reginject.dir/src/mach_excUser.c.s
 
 CMakeFiles/reginject.dir/src/mach_excUser.c.o.requires:
 
@@ -180,15 +180,15 @@ CMakeFiles/reginject.dir/src/mach_excUser.c.o.provides.build: CMakeFiles/reginje
 CMakeFiles/reginject.dir/src/BreakpointHandler.cc.o: CMakeFiles/reginject.dir/flags.make
 CMakeFiles/reginject.dir/src/BreakpointHandler.cc.o: ../src/BreakpointHandler.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/reginject.dir/src/BreakpointHandler.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/BreakpointHandler.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/BreakpointHandler.cc
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/BreakpointHandler.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/BreakpointHandler.cc
 
 CMakeFiles/reginject.dir/src/BreakpointHandler.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/reginject.dir/src/BreakpointHandler.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/BreakpointHandler.cc > CMakeFiles/reginject.dir/src/BreakpointHandler.cc.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/BreakpointHandler.cc > CMakeFiles/reginject.dir/src/BreakpointHandler.cc.i
 
 CMakeFiles/reginject.dir/src/BreakpointHandler.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/reginject.dir/src/BreakpointHandler.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/BreakpointHandler.cc -o CMakeFiles/reginject.dir/src/BreakpointHandler.cc.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/BreakpointHandler.cc -o CMakeFiles/reginject.dir/src/BreakpointHandler.cc.s
 
 CMakeFiles/reginject.dir/src/BreakpointHandler.cc.o.requires:
 
@@ -204,15 +204,15 @@ CMakeFiles/reginject.dir/src/BreakpointHandler.cc.o.provides.build: CMakeFiles/r
 CMakeFiles/reginject.dir/src/breakpoint.cc.o: CMakeFiles/reginject.dir/flags.make
 CMakeFiles/reginject.dir/src/breakpoint.cc.o: ../src/breakpoint.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/reginject.dir/src/breakpoint.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/breakpoint.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/breakpoint.cc
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/breakpoint.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/breakpoint.cc
 
 CMakeFiles/reginject.dir/src/breakpoint.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/reginject.dir/src/breakpoint.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/breakpoint.cc > CMakeFiles/reginject.dir/src/breakpoint.cc.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/breakpoint.cc > CMakeFiles/reginject.dir/src/breakpoint.cc.i
 
 CMakeFiles/reginject.dir/src/breakpoint.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/reginject.dir/src/breakpoint.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/breakpoint.cc -o CMakeFiles/reginject.dir/src/breakpoint.cc.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/breakpoint.cc -o CMakeFiles/reginject.dir/src/breakpoint.cc.s
 
 CMakeFiles/reginject.dir/src/breakpoint.cc.o.requires:
 
@@ -228,15 +228,15 @@ CMakeFiles/reginject.dir/src/breakpoint.cc.o.provides.build: CMakeFiles/reginjec
 CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.o: CMakeFiles/reginject.dir/flags.make
 CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.o: ../src/AArch64/AArch64Host.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/AArch64/AArch64Host.cc
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/AArch64/AArch64Host.cc
 
 CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/AArch64/AArch64Host.cc > CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/AArch64/AArch64Host.cc > CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.i
 
 CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/AArch64/AArch64Host.cc -o CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/AArch64/AArch64Host.cc -o CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.s
 
 CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.o.requires:
 
@@ -252,15 +252,15 @@ CMakeFiles/reginject.dir/src/AArch64/AArch64Host.cc.o.provides.build: CMakeFiles
 CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.o: CMakeFiles/reginject.dir/flags.make
 CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.o: ../src/ARMv7/ARMv7Host.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ARMv7/ARMv7Host.cc
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ARMv7/ARMv7Host.cc
 
 CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ARMv7/ARMv7Host.cc > CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ARMv7/ARMv7Host.cc > CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.i
 
 CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ARMv7/ARMv7Host.cc -o CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ARMv7/ARMv7Host.cc -o CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.s
 
 CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.o.requires:
 
@@ -276,15 +276,15 @@ CMakeFiles/reginject.dir/src/ARMv7/ARMv7Host.cc.o.provides.build: CMakeFiles/reg
 CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.o: CMakeFiles/reginject.dir/flags.make
 CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.o: ../src/ARMv7/ARMv7Breakpoint.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ARMv7/ARMv7Breakpoint.cc
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ARMv7/ARMv7Breakpoint.cc
 
 CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ARMv7/ARMv7Breakpoint.cc > CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ARMv7/ARMv7Breakpoint.cc > CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.i
 
 CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ARMv7/ARMv7Breakpoint.cc -o CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/ARMv7/ARMv7Breakpoint.cc -o CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.s
 
 CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.o.requires:
 
@@ -300,15 +300,15 @@ CMakeFiles/reginject.dir/src/ARMv7/ARMv7Breakpoint.cc.o.provides.build: CMakeFil
 CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.o: CMakeFiles/reginject.dir/flags.make
 CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.o: ../src/AArch64/AArch64Breakpoint.cc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/AArch64/AArch64Breakpoint.cc
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.o -c /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/AArch64/AArch64Breakpoint.cc
 
 CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/AArch64/AArch64Breakpoint.cc > CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/AArch64/AArch64Breakpoint.cc > CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.i
 
 CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/AArch64/AArch64Breakpoint.cc -o CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/callum/mods-n-stuff/coding/Projects/liberation_reginject_test/src/AArch64/AArch64Breakpoint.cc -o CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.s
 
 CMakeFiles/reginject.dir/src/AArch64/AArch64Breakpoint.cc.o.requires:
 

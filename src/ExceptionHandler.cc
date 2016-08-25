@@ -104,7 +104,7 @@ bool ExceptionHandler::SetupHandler() {
 
   pthread_detach(exception_thread);
 
-  if ((kr = task_set_exception_ports(task, EXC_MASK_BREAKPOINT, exc_port,
+  if ((kr = task_set_exception_ports(task, EXC_MASK_ALL, exc_port,
                                      EXCEPTION_DEFAULT | MACH_EXCEPTION_CODES,
                                      flavor)) != KERN_SUCCESS) {
     fprintf(stderr, "task_set_exception_ports: %s\n", mach_error_string(kr));
@@ -119,11 +119,10 @@ kern_return_t ExceptionHandler::ExceptionCallback(Exception &exception) {
   auto bkptHandler = BreakpointHandler::SharedHandler();
 
   int type = exception._type;
-
   // currently only handle breakpoints, pass all other exceptions to parent
   // handler
   if (type != EXC_BREAKPOINT)
-    return KERN_FAILURE;
+    return KERN_FAILURE; // possibly MIG_DESTROY_REQUEST
 
   Breakpoint *bkpt = bkptHandler->BreakpointAtAddress(0x0); // TODO;
   if (bkpt && bkpt->Active()) {
@@ -133,11 +132,5 @@ kern_return_t ExceptionHandler::ExceptionCallback(Exception &exception) {
     }
     return KERN_SUCCESS;
   }
-  return KERN_FAILURE;
-}
-
-// XXX: for now this is ok. In future each Process() will have its own handler
-__attribute__((constructor)) void ExceptionHandlerInit() {
-  auto exc = ExceptionHandler::SharedHandler();
-  exc->SetupHandler();
+  return KERN_FAILURE; // possibly MIG_DESTROY_REQUEST
 }

@@ -5,18 +5,18 @@
 //  Copyright © 2016 Satori. All rights reserved.
 //
 
+#include "ExceptionHandler.h"
 #include "Process.h"
 #include <stdlib.h>
 #include <string>
+#include <unistd.h>
+const int test = 1; // TODO;
 
 int main(int argc, char **argv) {
-  // TODO: attach to argv[1] and set a bp at argv[2]
-  auto proc = Process::Self();
-  if (!proc) {
-    printf("fuck my life\n");
-    exit(1);
-  }
-  printf("%s - %d\n", proc->name().data(), proc->process_id());
+  auto exc = ExceptionHandler::SharedHandler();
+  exc->SetupHandler();
+  sleep(1);
+  *(int *)&test = 10;
 }
 
 // int main_old() {
