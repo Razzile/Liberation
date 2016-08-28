@@ -13,6 +13,7 @@ bool x86_64HardwareBreakpoint::Apply() { return false; }
 bool x86_64HardwareBreakpoint::Reset() { return false; }
 
 bool x86_64SoftwareBreakpoint::Apply() {
+  _active = true;
   static uint8_t opcode[] = {0xCC};
 
   uint8_t original[1];
@@ -26,6 +27,7 @@ bool x86_64SoftwareBreakpoint::Apply() {
 }
 
 bool x86_64SoftwareBreakpoint::Reset() {
+  _active = false;
   return _proc->WriteMemory(_address, (char *)_originalOpcode.data(),
                             _originalOpcode.size(), true);
 }

@@ -65,10 +65,15 @@ ThreadState *Exception::ThreadState() {
   Host *host = Host::CurrentHost();
   switch (host->Platform()) {
   //   case Platform::AArch64: return new AArch64ThreadState()
-  case Platform::x86_64:
-    return new x86_64ThreadState(_thread);
+  case Platform::x86_64: {
+    x86_64ThreadState *state = new x86_64ThreadState(_thread);
+    state->Load();
+    return state;
   }
-  return nullptr;
+
+  default:
+    return nullptr;
+  }
 }
 
 std::shared_ptr<ExceptionHandler> ExceptionHandler::SharedHandler() {
@@ -140,17 +145,19 @@ kern_return_t ExceptionHandler::ExceptionCallback(Exception &exception) {
 
   ThreadState *state = exception.ThreadState();
   if (state) {
-    state->Load();
     Breakpoint *bkpt =
         bkptHandler->BreakpointAtAddress(state->CurrentAddress());
-    printf("breakpoint obj at %p\n", bkpt);
+    printf("breakpoint obj at %p [active: %d]\n", bkpt, bkpt->active());
     if (bkpt && bkpt->active()) {
+      printf("inner reached\n");
+
       auto cb = bkpt->callback();
       if (cb) {
-        printf("inner reached\n");
-        //          cb(bkpt, exception)
+        cb(*state);
       }
+      state->Save();
       bkptHandler->DisableBreakpoint(bkpt);
+
       thread_resume(exception._thread);
       return KERN_SUCCESS;
     }

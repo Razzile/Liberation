@@ -10,15 +10,17 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -std=c++11 -stdlib=libc++ ")
 
 include_directories("${CMAKE_SOURCE_DIR}/src")
 
-#file(GLOB liberation_SRC
-#    "*.h"
-#    "*.cpp"
-#)
+file(GLOB_RECURSE liberation_SRC
+   "src/*.cc"
+   "src/*.c"
+)
 
-add_executable(reginject src/main.cc src/Process.cc src/ExceptionHandler.cc
-                src/mach_excServer.c src/mach_excUser.c
-                src/BreakpointHandler.cc src/breakpoint.cc src/AArch64/AArch64Host.cc
-                src/ARMv7/ARMv7Host.cc src/ARMv7/ARMv7Breakpoint.cc src/AArch64/AArch64Breakpoint.cc)
+# src/main.cc src/Process.cc src/ExceptionHandler.cc
+# src/mach_excServer.c src/mach_excUser.c
+# src/BreakpointHandler.cc src/breakpoint.cc src/AArch64/AArch64Host.cc
+# src/ARMv7/ARMv7Host.cc src/ARMv7/ARMv7Breakpoint.cc src/AArch64/AArch64Breakpoint.cc
+
+add_executable(reginject ${liberation_SRC})
 
 add_custom_target(install
     COMMAND make

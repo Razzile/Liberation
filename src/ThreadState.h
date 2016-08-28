@@ -22,6 +22,11 @@ public:
 
     template <typename U> operator U() { return *(U *)_regVal; }
 
+    template <typename U> Register &operator=(U val) {
+      *(U *)_regVal = val;
+      return *this;
+    }
+
     std::string Name() { return _name; }
 
   private:

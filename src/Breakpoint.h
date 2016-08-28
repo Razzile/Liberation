@@ -17,7 +17,7 @@ class Breakpoint;
 class ThreadState;
 
 using byte = uint8_t;
-using BreakpointCallback = std::function<void(Breakpoint *, ThreadState *)>;
+using BreakpointCallback = std::function<void(ThreadState &)>;
 
 class Breakpoint {
 public:

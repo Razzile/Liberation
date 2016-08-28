@@ -30,7 +30,12 @@ bool x86_64ThreadState::Load() {
   return true;
 }
 
-bool x86_64ThreadState::Save() { return false; }
+bool x86_64ThreadState::Save() {
+  thread_set_state(_thread, x86_THREAD_STATE64,
+                   (thread_state_t) & this->thread_state,
+                   x86_THREAD_STATE64_COUNT);
+  return true;
+}
 
 std::string x86_64ThreadState::Description() {
   uint64_t *statePtr = (uint64_t *)&this->thread_state;
