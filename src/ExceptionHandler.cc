@@ -72,8 +72,9 @@ ThreadState *Exception::ThreadState() {
 }
 
 std::shared_ptr<ExceptionHandler> ExceptionHandler::SharedHandler() {
-  static ExceptionHandler main;
-  return std::make_shared<ExceptionHandler>(main);
+  static std::shared_ptr<ExceptionHandler> instance =
+      std::make_shared<ExceptionHandler>();
+  return instance;
 }
 
 bool ExceptionHandler::SetupHandler() {

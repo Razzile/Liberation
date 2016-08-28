@@ -8,8 +8,9 @@
 #include "BreakpointHandler.h"
 
 std::shared_ptr<BreakpointHandler> BreakpointHandler::SharedHandler() {
-  static BreakpointHandler main;
-  return std::make_shared<BreakpointHandler>(main); // std::move needed?
+  static std::shared_ptr<BreakpointHandler> instance =
+      std::make_shared<BreakpointHandler>();
+  return instance;
 }
 
 bool BreakpointHandler::InstallBreakpoint(Breakpoint *bp, bool immActive) {
