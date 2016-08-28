@@ -10,16 +10,24 @@
 
 #include "ThreadState.h"
 
+extern const char *thread_registers[];
+extern const char *debug_registers[];
+
 class x86_64ThreadState : public ThreadState {
 public:
-  x86_64ThreadState(thread_state_t state) : ThreadState(state) {}
+  x86_64ThreadState(mach_port_t thread) : ThreadState(thread) {}
 
   virtual std::string Description() override;
   virtual Register &operator[](std::string key) override;
   virtual bool Load() override;
+  virtual bool Save() override;
   virtual vm_address_t CurrentAddress() override;
 
 private:
+  x86_thread_state64_t thread_state;
+  x86_float_state64_t float_state;
+  x86_debug_state64_t debug_state;
+  x86_exception_state64_t exception_state;
 };
 
 #endif /* _x86_64ThreadState_ */

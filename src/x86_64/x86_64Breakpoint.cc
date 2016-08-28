@@ -22,7 +22,7 @@ bool x86_64SoftwareBreakpoint::Apply() {
 
   _originalOpcode.push_back(*original);
 
-  return _proc->WriteMemory(_address, (char *)opcode, sizeof(opcode), true);
+  return _proc->WriteMemory(_address, (char *)opcode, 1, true);
 }
 
 bool x86_64SoftwareBreakpoint::Reset() {

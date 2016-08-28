@@ -7,7 +7,9 @@
 
 #include "ExceptionHandler.h"
 #include "BreakpointHandler.h"
+#include "Host.h"
 #include "mach_exc.h"
+#include "x86_64/x86_64ThreadState.h"
 #include <mach/mach.h>
 #include <pthread.h>
 #include <sys/mman.h>
@@ -59,6 +61,16 @@ void *server_thread(void *arg) {
   return NULL;
 }
 
+ThreadState *Exception::ThreadState() {
+  Host *host = Host::CurrentHost();
+  switch (host->Platform()) {
+  //   case Platform::AArch64: return new AArch64ThreadState()
+  case Platform::x86_64:
+    return new x86_64ThreadState(_thread);
+  }
+  return nullptr;
+}
+
 std::shared_ptr<ExceptionHandler> ExceptionHandler::SharedHandler() {
   static ExceptionHandler main;
   return std::make_shared<ExceptionHandler>(main);
@@ -104,7 +116,7 @@ bool ExceptionHandler::SetupHandler() {
 
   pthread_detach(exception_thread);
 
-  if ((kr = task_set_exception_ports(task, EXC_MASK_ALL, exc_port,
+  if ((kr = task_set_exception_ports(task, EXC_MASK_BREAKPOINT, exc_port,
                                      EXCEPTION_DEFAULT | MACH_EXCEPTION_CODES,
                                      flavor)) != KERN_SUCCESS) {
     fprintf(stderr, "task_set_exception_ports: %s\n", mach_error_string(kr));
@@ -114,6 +126,7 @@ bool ExceptionHandler::SetupHandler() {
 }
 
 kern_return_t ExceptionHandler::ExceptionCallback(Exception &exception) {
+  thread_suspend(exception._thread);
   _exceptionHistory.push_back(exception);
 
   auto bkptHandler = BreakpointHandler::SharedHandler();
@@ -124,13 +137,23 @@ kern_return_t ExceptionHandler::ExceptionCallback(Exception &exception) {
   if (type != EXC_BREAKPOINT)
     return KERN_FAILURE; // possibly MIG_DESTROY_REQUEST
 
-  Breakpoint *bkpt = bkptHandler->BreakpointAtAddress(0x0); // TODO;
-  if (bkpt && bkpt->Active()) {
-    auto cb = bkpt->Callback();
-    if (cb) {
-      //          cb(bkpt, exception)
+  ThreadState *state = exception.ThreadState();
+  if (state) {
+    state->Load();
+    Breakpoint *bkpt =
+        bkptHandler->BreakpointAtAddress(state->CurrentAddress());
+    printf("breakpoint obj at %p\n", bkpt);
+    if (bkpt && bkpt->active()) {
+      auto cb = bkpt->callback();
+      if (cb) {
+        printf("inner reached\n");
+        //          cb(bkpt, exception)
+      }
+      bkptHandler->DisableBreakpoint(bkpt);
+      thread_resume(exception._thread);
+      return KERN_SUCCESS;
     }
-    return KERN_SUCCESS;
   }
+  thread_resume(exception._thread);
   return KERN_FAILURE; // possibly MIG_DESTROY_REQUEST
 }

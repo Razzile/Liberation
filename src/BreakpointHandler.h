@@ -33,7 +33,7 @@ public:
 
 private:
   Process *proc;
-  std::vector<BreakpointRef> _breakpoints; // TODO: switch to smart pointer?
+  std::vector<Breakpoint *> _breakpoints; // TODO: switch to smart pointer?
 };
 
 #endif /* _BreakpointHandler_ */

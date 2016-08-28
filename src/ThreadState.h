@@ -14,7 +14,7 @@
 
 class ThreadState {
 public:
-  ThreadState(thread_state_t state) : _state(state) {}
+  ThreadState(mach_port_t thread) : _thread(thread) {}
   // nasty wrapper around a register from a thread state
   class Register {
   public:
@@ -36,7 +36,7 @@ public:
   virtual vm_address_t CurrentAddress() = 0;
 
 protected:
-  thread_state_t _state;
+  mach_port_t _thread;
   std::vector<Register> _registers;
 };
 

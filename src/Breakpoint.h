@@ -28,9 +28,9 @@ public:
   virtual bool Apply() = 0;
   virtual bool Reset() = 0;
 
-  virtual bool Active() { return this->_active; }
-  virtual vm_address_t Address() { return this->_address; }
-  virtual BreakpointCallback Callback() { return this->_callback; }
+  virtual bool active() { return this->_active; }
+  virtual vm_address_t address() { return this->_address; }
+  virtual BreakpointCallback callback() { return this->_callback; }
 
   virtual void AddCallback(BreakpointCallback cb) { _callback = cb; }
 
@@ -40,30 +40,5 @@ protected:
   Process *_proc;
   BreakpointCallback _callback;
 };
-
-class SoftwareBreakpoint : public Breakpoint {
-public:
-  SoftwareBreakpoint(Process *proc, vm_address_t address)
-      : Breakpoint(proc, address) {}
-  ~SoftwareBreakpoint() = default;
-
-  virtual bool Apply();
-  virtual bool Reset();
-
-protected:
-  std::vector<byte> _originalBytes;
-};
-
-class HardwareBreakpoint : public Breakpoint {
-public:
-  HardwareBreakpoint(Process *proc, vm_address_t address)
-      : Breakpoint(proc, address) {}
-  ~HardwareBreakpoint() = default;
-
-  virtual bool Apply();
-  virtual bool Reset();
-};
-
-using BreakpointRef = std::shared_ptr<Breakpoint>;
 
 #endif /* _Breakpoints_ */

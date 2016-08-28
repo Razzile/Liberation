@@ -5,18 +5,34 @@
 //  Copyright © 2016 Satori. All rights reserved.
 //
 
+#include "BreakpointHandler.h"
 #include "ExceptionHandler.h"
 #include "Process.h"
+#include "x86_64/x86_64Breakpoint.h"
 #include <stdlib.h>
 #include <string>
 #include <unistd.h>
-const int test = 1; // TODO;
+
+__attribute__((naked)) int test() {
+  asm("mov $0, %rax");
+  asm("ret");
+}
 
 int main(int argc, char **argv) {
-  auto exc = ExceptionHandler::SharedHandler();
-  exc->SetupHandler();
-  sleep(1);
-  *(int *)&test = 10;
+  auto excHandler = ExceptionHandler::SharedHandler();
+  excHandler->SetupHandler();
+
+  auto bkptHandler = BreakpointHandler::SharedHandler();
+
+  x86_64SoftwareBreakpoint *bkpt =
+      new x86_64SoftwareBreakpoint(Process::Self().get(), (vm_address_t)test);
+  printf("test at %p\n", test);
+
+  bool res = bkptHandler->InstallBreakpoint(bkpt);
+  printf("install was %s\n", (res) ? "successful" : "unsuccsessful");
+
+  test();
+  bkptHandler->InstallBreakpoint(0);
 }
 
 // int main_old() {

@@ -165,10 +165,9 @@ bool Process::WriteMemory(vm_address_t address, char *input, size_t size,
                           bool force) {
   if (force) {
     krncall(vm_protect(_task, address, size, false,
-                       VM_PROT_READ | VM_PROT_WRITE | VM_PROT_COPY));
-
+                       VM_PROT_READ | VM_PROT_WRITE | VM_PROT_EXECUTE |
+                           VM_PROT_COPY));
     krncall(vm_write(_task, address, (vm_offset_t)input, size));
-
     // TODO: use vm_region(_xx) to get original prot to restore here
     krncall(vm_protect(_task, address, size, false,
                        VM_PROT_READ | VM_PROT_EXECUTE));
