@@ -28,6 +28,7 @@ bool x86_64SoftwareBreakpoint::Apply() {
 
 bool x86_64SoftwareBreakpoint::Reset() {
   _active = false;
+  printf("disabling 0x%llx [original 0x%02x]\n", _address, _originalOpcode[0]);
   return _proc->WriteMemory(_address, (char *)_originalOpcode.data(),
                             _originalOpcode.size(), true);
 }

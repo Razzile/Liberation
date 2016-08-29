@@ -157,7 +157,6 @@ kern_return_t ExceptionHandler::ExceptionCallback(Exception &exception) {
       }
       state->Save();
       bkptHandler->DisableBreakpoint(bkpt);
-
       thread_resume(exception._thread);
       return KERN_SUCCESS;
     }

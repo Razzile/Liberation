@@ -13,7 +13,11 @@
 #include <string>
 #include <unistd.h>
 
-__attribute((noinline)) int test() { return 0; }
+__attribute__((noinline)) __attribute__((naked)) int test(int x) {
+  asm("nop");
+  asm("mov %rdi, %rax");
+  asm("ret");
+}
 
 int main(int argc, char **argv) {
   auto excHandler = ExceptionHandler::SharedHandler();
@@ -25,15 +29,15 @@ int main(int argc, char **argv) {
       new x86_64SoftwareBreakpoint(Process::Self().get(), (vm_address_t)test);
 
   bkpt->AddCallback([](ThreadState &state) {
-    printf("rax = 0x%llx\n", uint64_t(state["RAX"]));
-    state["RAX"] = 0xff;
-    printf("rax = 0x%llx\n", uint64_t(state["RAX"]));
+    // woo
+    state["RDI"] = 255;
   });
-  printf("test at %p\n", test);
 
   bool res = bkptHandler->InstallBreakpoint(bkpt);
   printf("install was %s\n", (res) ? "successful" : "unsuccsessful");
-  asm("call %P0" : : "i"(test));
+
+  int x = test(10); // arg1 will be set to 255
+  printf("test returned: %d\n", x);
 }
 
 // int main_old() {
