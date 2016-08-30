@@ -1,6 +1,8 @@
 Liberation
 ========
 
+Check the `unfinished` branch for a preview of things I am working on.
+
 Liberation (formerly civ3) is a next generation code injection library for iOS cheaters everywhere.
 Unlike liberation's predecessor writeData, which was hardly ever updated and had tons of random edits floating around the net, Liberation will be updated regularly in this repo, and contributions are welcome from anyone (even if you aren't a member of ioscheaters)
 
