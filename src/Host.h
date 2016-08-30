@@ -8,7 +8,6 @@
 
 enum class Platform : unsigned { x86_64, ARMv7, AArch64, UNKNOWN = 0xFFFFFFFF };
 
-// TODO: add soem meat to this class
 class Host {
 public:
   static Host *CurrentHost();

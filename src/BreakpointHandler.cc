@@ -24,7 +24,6 @@ bool BreakpointHandler::InstallBreakpoint(Breakpoint *bp, bool immActive) {
       }
     }
   }
-  printf("size %d\n", _breakpoints.size());
   return true;
 }
 
@@ -47,10 +46,7 @@ bool BreakpointHandler::DisableBreakpoint(Breakpoint *bp) {
 }
 
 Breakpoint *BreakpointHandler::BreakpointAtAddress(vm_address_t address) {
-  printf("requested address 0x%llx [store size %d]\n", address,
-         _breakpoints.size());
   for (Breakpoint *bp : _breakpoints) {
-    printf("address 0x%llx\n", bp->address());
     if (bp->address() == address)
       return bp;
   }
@@ -69,6 +65,5 @@ std::vector<Breakpoint *> BreakpointHandler::Breakpoints(uint32_t flags) {
         local.push_back(bp);
     }
   }
-
   return local;
 }

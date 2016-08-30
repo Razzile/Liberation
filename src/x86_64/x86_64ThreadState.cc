@@ -1,6 +1,6 @@
 //
 //  x86_64ThreadState.cc
-//  ghetto_hook2
+//  Liberation
 //
 //  Copyright © 2016 Satori. All rights reserved.
 //
@@ -25,7 +25,6 @@ bool x86_64ThreadState::Load() {
   for (int i = 0; i < sizeof(x86_thread_state64_t) / sizeof(uint64_t); i++) {
     uint64_t *valPtr = (statePtr + i);
     _registers.emplace_back(valPtr, thread_registers[i]);
-    printf("added register %s [0x%llx]\n", thread_registers[i], *valPtr);
   }
   return true;
 }
@@ -64,5 +63,5 @@ ThreadState::Register &x86_64ThreadState::operator[](std::string key) {
 }
 
 vm_address_t x86_64ThreadState::CurrentAddress() {
-  return vm_address_t((*this)["RIP"]) & ~0x1;
+  return thread_state.__rip & ~0x1;
 }

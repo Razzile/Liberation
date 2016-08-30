@@ -147,14 +147,12 @@ kern_return_t ExceptionHandler::ExceptionCallback(Exception &exception) {
   if (state) {
     Breakpoint *bkpt =
         bkptHandler->BreakpointAtAddress(state->CurrentAddress());
-    printf("breakpoint obj at %p [active: %d]\n", bkpt, bkpt->active());
     if (bkpt && bkpt->active()) {
-      printf("inner reached\n");
-
       auto cb = bkpt->callback();
       if (cb) {
         cb(*state);
       }
+      // cleanup
       state->Save();
       bkptHandler->DisableBreakpoint(bkpt);
       thread_resume(exception._thread);

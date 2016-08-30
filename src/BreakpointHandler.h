@@ -15,8 +15,6 @@
 #define BKPT_DISABLED (1 << 1)
 #define BKPT_ALL (BKPT_ENABLED | BKPT_DISABLED)
 
-using byte = uint8_t;
-
 class BreakpointHandler {
 public:
   BreakpointHandler() = default;
