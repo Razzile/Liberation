@@ -30,7 +30,6 @@ public:
   std::vector<Breakpoint *> Breakpoints(uint32_t flags = BKPT_ALL);
 
 private:
-  Process *proc;
   std::vector<Breakpoint *> _breakpoints; // TODO: switch to smart pointer?
 };
 

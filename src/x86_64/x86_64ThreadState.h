@@ -23,7 +23,6 @@ public:
   virtual bool Save() override;
   virtual vm_address_t CurrentAddress() override;
 
-private:
   x86_thread_state64_t thread_state;
   x86_float_state64_t float_state;
   x86_debug_state64_t debug_state;

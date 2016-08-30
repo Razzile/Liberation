@@ -13,6 +13,9 @@ public:
 
   virtual bool Apply();
   virtual bool Reset();
+
+private:
+  int in_use;
 };
 
 class x86_64SoftwareBreakpoint : public Breakpoint {

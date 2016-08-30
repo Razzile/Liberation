@@ -73,7 +73,7 @@ public:
   bool InjectLibrary(const char *lib); // TODO: add this at later date
 
   // can ref values be used with virtual classes?
-  std::vector<ThreadState &> Threads(); // TODO: return empty when not paused
+  std::vector<ThreadState *> Threads(); // TODO: return empty when not paused
 
   bool ReadMemory(vm_address_t address, char *output, size_t size);
   bool WriteMemory(vm_address_t address, char *input, size_t size,

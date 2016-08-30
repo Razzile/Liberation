@@ -6,6 +6,8 @@
 //
 
 #include "Process.h"
+#include "Host.h"
+#include "x86_64/x86_64ThreadState.h"
 #include <stdlib.h>
 
 #define PROC_ALL_PIDS 1
@@ -77,29 +79,6 @@ inline bool ProcessExists(int pid) {
   return false;
 }
 
-// TODO: find a better way to do this
-// Platform PlatformForProcess(int proc) {
-//   proc_taskallinfo ti;
-//   proc_pidinfo(proc, PROC_PIDTASKALLINFO, 0, &ti, sizeof(ti));
-// #ifdef __ARM__
-//   if (ti.pbsd.pbi_flags & PROC_FLAG_LP64)
-//     return Platform::ARM64;
-//   else
-//     return Platform::ARMv7;
-// #else
-//   if (ti.pbsd.pbi_flags & PROC_FLAG_LP64)
-//     return Platform::x86_64;
-//   else
-//     return Platform::x86;
-// #endif
-// }
-//
-// bool PlatformIs64Bit(Platform pf) {
-//   return (pf == Platform::x86_64 || pf == Platform::ARM64);
-// }
-
-////////
-
 ProcessRef Process::GetProcess(const char *name) {
   if (!name)
     return nullptr;
@@ -153,6 +132,28 @@ bool Process::Resume() {
 bool Process::InjectLibrary(const char *lib) {
   // XXX: taming this dragon is for another day
   return false;
+}
+
+std::vector<ThreadState *> Process::Threads() {
+  std::vector<ThreadState *> local;
+
+  Host *host = Host::CurrentHost();
+
+  thread_act_port_array_t threads;
+  mach_msg_type_number_t count;
+  task_threads(_task, &threads, &count);
+
+  for (int i = 0; i < count; i++) {
+    switch (host->Platform()) {
+    case Platform::x86_64: {
+      local.push_back(new x86_64ThreadState(threads[i]));
+      break;
+    }
+    default:
+      break;
+    }
+  }
+  return local;
 }
 
 bool Process::ReadMemory(vm_address_t address, char *output, size_t size) {
