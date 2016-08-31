@@ -11,6 +11,7 @@
 #include "x86_64/x86_64Breakpoint.h"
 #include <stdlib.h>
 #include <string>
+#include <thread>
 #include <unistd.h>
 
 __attribute__((noinline)) __attribute__((naked)) int test(int x) {
@@ -22,19 +23,20 @@ __attribute__((noinline)) __attribute__((naked)) int test(int x) {
 int main(int argc, char **argv) {
   auto excHandler = ExceptionHandler::SharedHandler();
   excHandler->SetupHandler();
+  std::thread([]() {
+    auto bkptHandler = BreakpointHandler::SharedHandler();
 
-  auto bkptHandler = BreakpointHandler::SharedHandler();
+    x86_64HardwareBreakpoint *bkpt =
+        new x86_64HardwareBreakpoint(Process::Self().get(), (vm_address_t)test);
 
-  x86_64SoftwareBreakpoint *bkpt =
-      new x86_64SoftwareBreakpoint(Process::Self().get(), (vm_address_t)test);
+    bkpt->AddCallback([](ThreadState &state) {
+      // woo
+      state["RDI"] = 255;
+    });
 
-  bkpt->AddCallback([](ThreadState &state) {
-    // woo
-    state["RDI"] = 255;
-  });
-
-  bool res = bkptHandler->InstallBreakpoint(bkpt);
-  printf("install was %s\n", (res) ? "successful" : "unsuccsessful");
+    bool res = bkptHandler->InstallBreakpoint(bkpt);
+    printf("install was %s\n", (res) ? "successful" : "unsuccsessful");
+  }).join();
 
   int x = test(10); // arg1 will be set to 255
   printf("test returned: %d\n", x);

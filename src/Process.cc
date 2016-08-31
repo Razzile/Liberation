@@ -134,7 +134,7 @@ bool Process::InjectLibrary(const char *lib) {
   return false;
 }
 
-std::vector<ThreadState *> Process::Threads() {
+std::vector<ThreadState *> Process::Threads(mach_port_t ignore) {
   std::vector<ThreadState *> local;
 
   Host *host = Host::CurrentHost();
@@ -144,6 +144,9 @@ std::vector<ThreadState *> Process::Threads() {
   task_threads(_task, &threads, &count);
 
   for (int i = 0; i < count; i++) {
+    if (threads[i] == ignore)
+      continue;
+
     switch (host->Platform()) {
     case Platform::x86_64: {
       local.push_back(new x86_64ThreadState(threads[i]));

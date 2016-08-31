@@ -20,8 +20,12 @@ bool x86_64ThreadState::Load() {
   x86_thread_state64_t &state = this->thread_state;
   mach_msg_type_number_t count = x86_THREAD_STATE64_COUNT;
   thread_get_state(_thread, x86_THREAD_STATE64, (thread_state_t)&state, &count);
-  uint64_t *statePtr = (uint64_t *)&state;
 
+  count = x86_DEBUG_STATE64_COUNT;
+  thread_get_state(_thread, x86_DEBUG_STATE64,
+                   (thread_state_t) & this->debug_state, &count);
+
+  uint64_t *statePtr = (uint64_t *)&state;
   for (int i = 0; i < sizeof(x86_thread_state64_t) / sizeof(uint64_t); i++) {
     uint64_t *valPtr = (statePtr + i);
     _registers.emplace_back(valPtr, thread_registers[i]);
@@ -33,6 +37,10 @@ bool x86_64ThreadState::Save() {
   thread_set_state(_thread, x86_THREAD_STATE64,
                    (thread_state_t) & this->thread_state,
                    x86_THREAD_STATE64_COUNT);
+
+  thread_set_state(_thread, x86_DEBUG_STATE64,
+                   (thread_state_t) & this->debug_state,
+                   x86_DEBUG_STATE64_COUNT);
   return true;
 }
 
