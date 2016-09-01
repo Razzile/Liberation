@@ -88,7 +88,7 @@ bool x86_64HardwareBreakpoint::Apply() {
     debug.__dr7 = dr7;
     printf("dr7 is %d\n", (int)dr7);
     in_use++;
-
+    _active = true;
     state->Save();
   }
   return true;
@@ -116,8 +116,9 @@ bool x86_64HardwareBreakpoint::Reset() {
     if (debug_state.__dr3 == _address)
       index = 3;
 
-    if (index == -1)
-      return false;
+    if (index == -1) {
+      continue;
+    }
 
     dr7_ctx dr7 = debug_state.__dr7;
 
@@ -144,6 +145,7 @@ bool x86_64HardwareBreakpoint::Reset() {
     }
 
     debug_state.__dr7 = dr7;
+    _active = false;
     state->Save();
   }
   return true;

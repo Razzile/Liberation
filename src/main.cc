@@ -14,10 +14,20 @@
 #include <thread>
 #include <unistd.h>
 
-__attribute__((noinline)) __attribute__((naked)) int test(int x) {
-  asm("nop");
-  asm("mov %rdi, %rax");
-  asm("ret");
+// __attribute__((noinline)) __attribute__((naked)) int test(int x) {
+//   asm("nop");
+//   asm("mov %rdi, %rax");
+//   asm("ret");
+// }
+
+void original() {
+  printf("original\n");
+  return;
+}
+
+void redirect() {
+  printf("redirected\n");
+  return;
 }
 
 int main(int argc, char **argv) {
@@ -26,20 +36,22 @@ int main(int argc, char **argv) {
   std::thread([]() {
     auto bkptHandler = BreakpointHandler::SharedHandler();
 
-    x86_64HardwareBreakpoint *bkpt =
-        new x86_64HardwareBreakpoint(Process::Self().get(), (vm_address_t)test);
+    auto bkpt = new x86_64HardwareBreakpoint(Process::Self().get(),
+                                             (vm_address_t)original);
 
     bkpt->AddCallback([](ThreadState &state) {
-      // woo
-      state["RDI"] = 255;
+      vm_address_t addr = state["RIP"];
+      vm_address_t stack = state["RSP"];
+      stack -= 8;
+      *(uint64_t *)stack = addr;
+      state["RIP"] = (uint64_t)redirect;
     });
 
     bool res = bkptHandler->InstallBreakpoint(bkpt);
     printf("install was %s\n", (res) ? "successful" : "unsuccsessful");
   }).join();
 
-  int x = test(10); // arg1 will be set to 255
-  printf("test returned: %d\n", x);
+  original(); // should call redirect()
 }
 
 // int main_old() {

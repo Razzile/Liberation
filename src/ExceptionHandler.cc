@@ -145,6 +145,7 @@ kern_return_t ExceptionHandler::ExceptionCallback(Exception &exception) {
 
   ThreadState *state = exception.ThreadState();
   if (state) {
+    printf("exception occured at 0x%llx\n", state->CurrentAddress());
     Breakpoint *bkpt =
         bkptHandler->BreakpointAtAddress(state->CurrentAddress());
     if (bkpt && bkpt->active()) {
