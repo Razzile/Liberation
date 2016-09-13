@@ -12,6 +12,9 @@
 #include <string>
 #include <vector>
 
+#define STATE_ADD_REGISTER(state, reg, pointer) \
+    state->_registers.emplace_back(pointer, reg)
+
 class ThreadState {
 public:
     ThreadState(mach_port_t thread) : _thread(thread) {}

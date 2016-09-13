@@ -27,10 +27,29 @@ bool x86_64ThreadState::Load() {
                      (thread_state_t) & this->debug_state, &count);
 
     uint64_t *statePtr = (uint64_t *)&state;
-    for (int i = 0; i < sizeof(x86_thread_state64_t) / sizeof(uint64_t); i++) {
-        uint64_t *valPtr = (statePtr + i);
-        _registers.emplace_back(valPtr, thread_registers[i]);
-    }
+
+    STATE_ADD_REGISTER(this, "RAX",    statePtr + 0);
+    STATE_ADD_REGISTER(this, "RBX",    statePtr + 1);
+    STATE_ADD_REGISTER(this, "RCX",    statePtr + 2);
+    STATE_ADD_REGISTER(this, "RDX",    statePtr + 3);
+    STATE_ADD_REGISTER(this, "RDI",    statePtr + 4);
+    STATE_ADD_REGISTER(this, "RSI",    statePtr + 5);
+    STATE_ADD_REGISTER(this, "RBP",    statePtr + 6);
+    STATE_ADD_REGISTER(this, "RSP",    statePtr + 7);
+    STATE_ADD_REGISTER(this, "R8",     statePtr + 8);
+    STATE_ADD_REGISTER(this, "R9",     statePtr + 9);
+    STATE_ADD_REGISTER(this, "R10",    statePtr + 10);
+    STATE_ADD_REGISTER(this, "R11",    statePtr + 11);
+    STATE_ADD_REGISTER(this, "R12",    statePtr + 12);
+    STATE_ADD_REGISTER(this, "R13",    statePtr + 13);
+    STATE_ADD_REGISTER(this, "R14",    statePtr + 14);
+    STATE_ADD_REGISTER(this, "R15",    statePtr + 15);
+    STATE_ADD_REGISTER(this, "RIP",    statePtr + 16);
+    STATE_ADD_REGISTER(this, "RFLAGS", statePtr + 17);
+    STATE_ADD_REGISTER(this, "CS",     statePtr + 18);
+    STATE_ADD_REGISTER(this, "FS",     statePtr + 19);
+    STATE_ADD_REGISTER(this, "GS",     statePtr + 20);
+
     return true;
 }
 

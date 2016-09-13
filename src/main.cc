@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
     std::thread([]() {
         auto bkptHandler = BreakpointHandler::SharedHandler();
 
-        auto bkpt = new x86_64HardwareBreakpoint(Process::Self().get(),
+        auto bkpt = new x86_64SoftwareBreakpoint(Process::Self().get(),
                                                  (vm_address_t)original);
 
         bkpt->AddCallback([](ThreadState &state) {
