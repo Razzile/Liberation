@@ -8,21 +8,21 @@
 
 class AArch64HardwareBreakpoint : public Breakpoint {
 public:
-  AArch64HardwareBreakpoint(Process *proc, vm_address_t addr)
-      : Breakpoint(proc, addr) {}
+    AArch64HardwareBreakpoint(Process *proc, vm_address_t addr)
+    : Breakpoint(proc, addr) {}
 
-  virtual bool Apply();
-  virtual bool Reset();
+    virtual bool Apply();
+    virtual bool Reset();
 };
 
 class AArch64SoftwareBreakpoint : public Breakpoint {
 public:
-  AArch64SoftwareBreakpoint(Process *proc, vm_address_t addr)
-      : Breakpoint(proc, addr) {}
+    AArch64SoftwareBreakpoint(Process *proc, vm_address_t addr)
+    : Breakpoint(proc, addr) {}
 
-  virtual bool Apply();
-  virtual bool Reset();
+    virtual bool Apply();
+    virtual bool Reset();
 
 protected:
-  std::vector<uint8_t> _originalOpcode;
+    std::vector<uint8_t> _originalOpcode;
 };

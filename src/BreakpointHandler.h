@@ -17,20 +17,20 @@
 
 class BreakpointHandler {
 public:
-  BreakpointHandler() = default;
-  static std::shared_ptr<BreakpointHandler> SharedHandler();
+    BreakpointHandler() = default;
+    static std::shared_ptr<BreakpointHandler> SharedHandler();
 
-  bool InstallBreakpoint(Breakpoint *bp, bool immActive = true);
-  bool UninstallBreakpoint(Breakpoint *bp);
-  bool DisableBreakpoint(Breakpoint *bp);
-  bool EnableBreakpoint(Breakpoint *bp);
+    bool InstallBreakpoint(Breakpoint *bp, bool immActive = true);
+    bool UninstallBreakpoint(Breakpoint *bp);
+    bool DisableBreakpoint(Breakpoint *bp);
+    bool EnableBreakpoint(Breakpoint *bp);
 
-  Breakpoint *BreakpointAtAddress(vm_address_t address);
+    Breakpoint *BreakpointAtAddress(vm_address_t address);
 
-  std::vector<Breakpoint *> Breakpoints(uint32_t flags = BKPT_ALL);
+    std::vector<Breakpoint *> Breakpoints(uint32_t flags = BKPT_ALL);
 
 private:
-  std::vector<Breakpoint *> _breakpoints; // TODO: switch to smart pointer?
+    std::vector<Breakpoint *> _breakpoints;  // TODO: switch to smart pointer?
 };
 
 #endif /* _BreakpointHandler_ */

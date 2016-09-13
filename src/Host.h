@@ -10,9 +10,9 @@ enum class Platform : unsigned { x86_64, ARMv7, AArch64, UNKNOWN = 0xFFFFFFFF };
 
 class Host {
 public:
-  static Host *CurrentHost();
+    static Host *CurrentHost();
 
-  virtual int HardwareBreakpointCount() = 0;
-  virtual int HardwareWatchpointCount() = 0; // unusued in liberation
-  virtual Platform Platform() = 0;
+    virtual int HardwareBreakpointCount() = 0;
+    virtual int HardwareWatchpointCount() = 0;  // unusued in liberation
+    virtual Platform Platform() = 0;
 };

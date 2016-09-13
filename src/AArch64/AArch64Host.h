@@ -8,7 +8,7 @@
 
 class AArch64Host : public Host {
 public:
-  virtual int HardwareBreakpointCount();
-  virtual int HardwareWatchpointCount(); // unusued in liberation
-  virtual enum Platform Platform() { return Platform::AArch64; }
+    virtual int HardwareBreakpointCount();
+    virtual int HardwareWatchpointCount();  // unusued in liberation
+    virtual enum Platform Platform() { return Platform::AArch64; }
 };

@@ -8,7 +8,7 @@
 
 class x86_64Host : public Host {
 public:
-  virtual int HardwareBreakpointCount();
-  virtual int HardwareWatchpointCount(); // unusued in liberation
-  virtual enum Platform Platform() { return Platform::x86_64; }
+    virtual int HardwareBreakpointCount();
+    virtual int HardwareWatchpointCount();  // unusued in liberation
+    virtual enum Platform Platform() { return Platform::x86_64; }
 };

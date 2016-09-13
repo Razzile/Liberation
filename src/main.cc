@@ -5,14 +5,14 @@
 //  Copyright © 2016 Satori. All rights reserved.
 //
 
+#include <stdlib.h>
+#include <unistd.h>
+#include <string>
+#include <thread>
 #include "BreakpointHandler.h"
 #include "ExceptionHandler.h"
 #include "Process.h"
 #include "x86_64/x86_64Breakpoint.h"
-#include <stdlib.h>
-#include <string>
-#include <thread>
-#include <unistd.h>
 
 // __attribute__((noinline)) __attribute__((naked)) int test(int x) {
 //   asm("nop");
@@ -20,38 +20,36 @@
 //   asm("ret");
 // }
 
-void original() {
-  printf("original\n");
-  return;
+int original() {
+    return 0;
 }
 
-void redirect() {
-  printf("redirected\n");
-  return;
+int redirect() {
+    return 69;
 }
 
 int main(int argc, char **argv) {
-  auto excHandler = ExceptionHandler::SharedHandler();
-  excHandler->SetupHandler();
-  std::thread([]() {
-    auto bkptHandler = BreakpointHandler::SharedHandler();
+    auto excHandler = ExceptionHandler::SharedHandler();
+    excHandler->SetupHandler();
+    std::thread([]() {
+        auto bkptHandler = BreakpointHandler::SharedHandler();
 
-    auto bkpt = new x86_64HardwareBreakpoint(Process::Self().get(),
-                                             (vm_address_t)original);
+        auto bkpt = new x86_64HardwareBreakpoint(Process::Self().get(),
+                                                 (vm_address_t)original);
 
-    bkpt->AddCallback([](ThreadState &state) {
-      vm_address_t addr = state["RIP"];
-      vm_address_t stack = state["RSP"];
-      stack -= 8;
-      *(uint64_t *)stack = addr;
-      state["RIP"] = (uint64_t)redirect;
-    });
+        bkpt->AddCallback([](ThreadState &state) {
+            vm_address_t addr = state["RIP"];
+            vm_address_t stack = state["RSP"];
+            stack -= 8;
+            *(uint64_t *)stack = addr;
+            state["RIP"] = (uint64_t)redirect;
+        });
 
-    bool res = bkptHandler->InstallBreakpoint(bkpt);
-    printf("install was %s\n", (res) ? "successful" : "unsuccsessful");
-  }).join();
+        bool res = bkptHandler->InstallBreakpoint(bkpt);
+        printf("install was %s\n", (res) ? "successful" : "unsuccsessful");
+    }).join();
 
-  original(); // should call redirect()
+    return original();  // should call redirect()
 }
 
 // int main_old() {

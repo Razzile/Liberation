@@ -8,15 +8,15 @@
 #ifndef _Process_
 #define _Process_
 
-#include "ThreadState.h"
 #include <mach/mach.h>
-#include <string>
 #include <sys/types.h>
+#include <string>
 #include <vector>
+#include "ThreadState.h"
 
 // TODO: find a vetter way to do this
 // TODO: check if vm_region_64 works correctly when targeting 32 bit processes
-#ifdef __LP64__ // 64 bit functions
+#ifdef __LP64__  // 64 bit functions
 
 #define vm_region_basic_info_data_xx_t vm_region_basic_info_data_64_t
 #define vm_region_info_xx_t vm_region_info_64_t
@@ -27,7 +27,7 @@
 #define vm_region_submap_info_xx vm_region_submap_info_64
 #define vm_region_recurse_xx vm_region_recurse_64
 
-#else // 32 bit functions
+#else  // 32 bit functions
 
 #define vm_region_basic_info_data_xx_t vm_region_basic_info_data_t
 #define vm_region_info_xx_t vm_region_info_t
@@ -51,47 +51,47 @@ using ProcessRef = std::shared_ptr<Process>;
 
 class Process {
 public:
-  struct Region {
-    vm_address_t start;
-    size_t size;
-    Region(vm_address_t start, size_t size) : start(start), size(size) {}
-  };
+    struct Region {
+        vm_address_t start;
+        size_t size;
+        Region(vm_address_t start, size_t size) : start(start), size(size) {}
+    };
 
-  static ProcessRef GetProcess(const char *name);
-  static ProcessRef GetProcess(int pid);
-  static ProcessRef Self();
+    static ProcessRef GetProcess(const char *name);
+    static ProcessRef GetProcess(int pid);
+    static ProcessRef Self();
 
-  Process(int pid, const char *name, task_t task)
-      : _pid(pid), _name(name), _task(task), _paused(false) {}
+    Process(int pid, const char *name, task_t task)
+    : _pid(pid), _name(name), _task(task), _paused(false) {}
 
-  bool IsAlive();
-  bool Kill();
+    bool IsAlive();
+    bool Kill();
 
-  bool Pause();
-  bool Resume();
+    bool Pause();
+    bool Resume();
 
-  bool InjectLibrary(const char *lib); // TODO: add this at later date
+    bool InjectLibrary(const char *lib);  // TODO: add this at later date
 
-  // can ref values be used with virtual classes?
-  std::vector<ThreadState *>
-  Threads(mach_port_t ignore = 0); // TODO: return empty when not paused
+    // can ref values be used with virtual classes?
+    std::vector<ThreadState *> Threads(
+        mach_port_t ignore = 0);  // TODO: return empty when not paused
 
-  bool ReadMemory(vm_address_t address, char *output, size_t size);
-  bool WriteMemory(vm_address_t address, char *input, size_t size,
-                   bool force = false);
-  std::vector<Process::Region> GetRegions(vm_prot_t options = VM_PROT_READ |
-                                                              VM_PROT_WRITE);
+    bool ReadMemory(vm_address_t address, char *output, size_t size);
+    bool WriteMemory(vm_address_t address, char *input, size_t size,
+                     bool force = false);
+    std::vector<Process::Region> GetRegions(vm_prot_t options = VM_PROT_READ |
+                                                                VM_PROT_WRITE);
 
-  pid_t process_id() { return _pid; }
-  std::string name() { return _name; }
-  task_t task() { return _task; }
-  bool paused() { return _paused; }
+    pid_t process_id() { return _pid; }
+    std::string name() { return _name; }
+    task_t task() { return _task; }
+    bool paused() { return _paused; }
 
 private:
-  pid_t _pid;
-  std::string _name;
-  task_t _task;
-  bool _paused;
+    pid_t _pid;
+    std::string _name;
+    task_t _task;
+    bool _paused;
 };
 
 #endif /* _Process_ */
