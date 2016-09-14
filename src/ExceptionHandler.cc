@@ -13,7 +13,7 @@
 #include "BreakpointHandler.h"
 #include "Host.h"
 #include "mach_exc.h"
-#include "x86_64/x86_64ThreadState.h"
+
 
 extern "C" boolean_t mach_exc_server(mach_msg_header_t *, mach_msg_header_t *);
 
@@ -60,20 +60,9 @@ void *server_thread(void *arg) {
     return NULL;
 }
 
-ThreadState *Exception::ThreadState() {
-    Host *host = Host::CurrentHost();
-    switch (host->Platform()) {
-        //   case Platform::AArch64: return new AArch64ThreadState()
-        case Platform::x86_64: {
-            x86_64ThreadState *state = new x86_64ThreadState(_thread);
-            state->Load();
-            return state;
-        }
-
-        default:
-            return nullptr;
-    }
-}
+ ThreadState *Exception::ThreadState() {
+     return ThreadState::ThreadStateFromThread(_thread);
+ }
 
 std::shared_ptr<ExceptionHandler> ExceptionHandler::SharedHandler() {
     static std::shared_ptr<ExceptionHandler> instance =

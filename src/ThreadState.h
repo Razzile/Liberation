@@ -42,10 +42,23 @@ public:
     };
 
     virtual std::string Description() = 0;
-    virtual Register &operator[](std::string key) = 0;
     virtual bool Load() = 0;
     virtual bool Save() = 0;
     virtual vm_address_t CurrentAddress() = 0;
+
+    static ThreadState *ThreadStateFromThread(mach_port_t thread);
+
+    ThreadState::Register operator[](std::string key) {
+        // nasty way to make string uppercase
+        for (auto &c : key) c = toupper(c);
+
+        for (Register &reg : _registers) {
+            if (reg.Name() == key) return reg;
+        }
+        // PLEASE cheaters, don't make this get called
+        throw std::runtime_error("invalid register called on thread state: \n" +
+                                 this->Description() + "\n");
+    }
 
 protected:
     mach_port_t _thread;

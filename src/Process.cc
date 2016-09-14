@@ -8,7 +8,6 @@
 #include "Process.h"
 #include <stdlib.h>
 #include "Host.h"
-#include "x86_64/x86_64ThreadState.h"
 
 #define PROC_ALL_PIDS 1
 
@@ -146,14 +145,14 @@ std::vector<ThreadState *> Process::Threads(mach_port_t ignore) {
     for (int i = 0; i < count; i++) {
         if (threads[i] == ignore) continue;
 
-        switch (host->Platform()) {
-            case Platform::x86_64: {
-                local.push_back(new x86_64ThreadState(threads[i]));
-                break;
-            }
-            default:
-                break;
-        }
+        // switch (host->Platform()) {
+        //     case Platform::x86_64: {
+        //         local.push_back(new x86_64ThreadState(threads[i]));
+        //         break;
+        //     }
+        //     default:
+        //         break;
+        // }
     }
     return local;
 }

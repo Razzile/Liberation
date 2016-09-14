@@ -51,3 +51,29 @@ bool ARMv7ThreadState::Load() {
 
     return true;
 }
+
+bool ARMv7ThreadState::Save() {
+    thread_set_state(_thread, ARM_THREAD_STATE, (thread_state_t)&thread_state,
+                     ARM_THREAD_STATE_COUNT);
+    thread_set_state(_thread, ARM_VFP_STATE, (thread_state_t)&vfp_state,
+                     ARM_VFP_STATE_COUNT);
+    thread_set_state(_thread, ARM_NEON_STATE, (thread_state_t)&neon_state,
+                     ARM_NEON_STATE_COUNT);
+    thread_set_state(_thread, ARM_EXCEPTION_STATE,
+                     (thread_state_t)&exception_state,
+                     ARM_EXCEPTION_STATE_COUNT);
+    thread_set_state(_thread, ARM_DEBUG_STATE, (thread_state_t)&debug_state,
+                     ARM_DEBUG_STATE_COUNT);
+
+    return true;
+}
+
+vm_address_t ARMv7ThreadState::CurrentAddress() {
+    return thread_state.__pc & ~0x1; 
+}
+
+#ifdef __arm__
+ThreadState *ThreadState::ThreadStateFromThread(mach_port_t thread) {
+    return new ARMv7ThreadState(thread);
+}
+#endif

@@ -31,23 +31,23 @@ int redirect() {
 int main(int argc, char **argv) {
     auto excHandler = ExceptionHandler::SharedHandler();
     excHandler->SetupHandler();
-    std::thread([]() {
-        auto bkptHandler = BreakpointHandler::SharedHandler();
-
-        auto bkpt = new x86_64SoftwareBreakpoint(Process::Self().get(),
-                                                 (vm_address_t)original);
-
-        bkpt->AddCallback([](ThreadState &state) {
-            vm_address_t addr = state["RIP"];
-            vm_address_t stack = state["RSP"];
-            stack -= 8;
-            *(uint64_t *)stack = addr;
-            state["RIP"] = (uint64_t)redirect;
-        });
-
-        bool res = bkptHandler->InstallBreakpoint(bkpt);
-        printf("install was %s\n", (res) ? "successful" : "unsuccsessful");
-    }).join();
+    // std::thread([]() {
+    //     auto bkptHandler = BreakpointHandler::SharedHandler();
+    //
+    //     auto bkpt = new x86_64SoftwareBreakpoint(Process::Self().get(),
+    //                                              (vm_address_t)original);
+    //
+    //     bkpt->AddCallback([](ThreadState &state) {
+    //         vm_address_t addr = state["RIP"];
+    //         vm_address_t stack = state["RSP"];
+    //         stack -= 8;
+    //         *(uint64_t *)stack = addr;
+    //         state["RIP"] = (uint64_t)redirect;
+    //     });
+    //
+    //     bool res = bkptHandler->InstallBreakpoint(bkpt);
+    //     printf("install was %s\n", (res) ? "successful" : "unsuccsessful");
+    // }).join();
 
     return original();  // should call redirect()
 }
