@@ -14,7 +14,6 @@
 #include "Host.h"
 #include "mach_exc.h"
 
-
 extern "C" boolean_t mach_exc_server(mach_msg_header_t *, mach_msg_header_t *);
 
 #pragma mark Ugly
@@ -60,9 +59,9 @@ void *server_thread(void *arg) {
     return NULL;
 }
 
- ThreadState *Exception::ThreadState() {
-     return ThreadState::ThreadStateFromThread(_thread);
- }
+ThreadState *Exception::ThreadState() {
+    return ThreadState::ThreadStateFromThread(_thread);
+}
 
 std::shared_ptr<ExceptionHandler> ExceptionHandler::SharedHandler() {
     static std::shared_ptr<ExceptionHandler> instance =

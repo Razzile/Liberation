@@ -29,6 +29,11 @@ public:
         }
 
         template <typename U>
+        U Value() {
+            return *(U *)_regVal;
+        }
+
+        template <typename U>
         Register &operator=(U val) {
             *(U *)_regVal = val;
             return *this;

@@ -24,7 +24,7 @@ bool x86_64ThreadState::Load() {
 
     count = x86_DEBUG_STATE64_COUNT;
     thread_get_state(_thread, x86_DEBUG_STATE64,
-                     (thread_state_t) & this->debug_state, &count);
+                     (thread_state_t)&this->debug_state, &count);
 
     uint64_t *statePtr = (uint64_t *)&state;
 
@@ -76,18 +76,10 @@ std::string x86_64ThreadState::Description() {
     return stream.str();
 }
 
-ThreadState::Register &x86_64ThreadState::operator[](std::string key) {
-    // nasty way to make string uppercase
-    for (auto &c : key) c = toupper(c);
-
-    for (Register &reg : _registers) {
-        if (reg.Name() == key) return reg;
-    }
-    // PLEASE cheaters, don't make this get called
-    throw std::runtime_error("invalid register called on thread state: \n" +
-                             this->Description() + "\n");
-}
-
 vm_address_t x86_64ThreadState::CurrentAddress() {
     return thread_state.__rip & ~0x1;
+}
+
+ThreadState *ThreadState::ThreadStateFromThread(mach_port_t thread) {
+    return new x86_64ThreadState(thread);
 }

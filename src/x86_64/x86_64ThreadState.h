@@ -18,7 +18,6 @@ public:
     x86_64ThreadState(mach_port_t thread) : ThreadState(thread) {}
 
     virtual std::string Description() override;
-    virtual Register &operator[](std::string key) override;
     virtual bool Load() override;
     virtual bool Save() override;
     virtual vm_address_t CurrentAddress() override;
