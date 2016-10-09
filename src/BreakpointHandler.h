@@ -5,8 +5,7 @@
 //  Copyright © 2016 Satori. All rights reserved.
 //
 
-#ifndef _BreakpointHandler_
-#define _BreakpointHandler_
+#pragma once
 
 #include "Breakpoint.h"
 #include "Process.h"
@@ -32,5 +31,3 @@ public:
 private:
     std::vector<Breakpoint *> _breakpoints;  // TODO: switch to smart pointer?
 };
-
-#endif /* _BreakpointHandler_ */

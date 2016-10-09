@@ -5,8 +5,7 @@
 //  Copyright © 2016 Satori. All rights reserved.
 //
 
-#ifndef _ExceptionHandler_
-#define _ExceptionHandler_
+#pragma once
 
 #include <memory>
 #include <vector>
@@ -48,5 +47,3 @@ public:
 private:
     std::vector<Exception> _exceptionHistory;
 };
-
-#endif /* _ExceptionHandler_ */

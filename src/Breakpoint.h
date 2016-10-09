@@ -5,8 +5,7 @@
 //  Copyright © 2016 Satori. All rights reserved.
 //
 
-#ifndef _Breakpoints_
-#define _Breakpoints_
+#pragma once
 
 #include <mach/mach.h>
 #include <functional>
@@ -38,5 +37,3 @@ protected:
     Process *_proc;
     BreakpointCallback _callback;
 };
-
-#endif /* _Breakpoints_ */

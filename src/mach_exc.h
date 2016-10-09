@@ -1,5 +1,4 @@
-#ifndef _mach_exc_user_
-#define _mach_exc_user_
+#pragma once
 
 /* Module mach_exc */
 
@@ -55,7 +54,6 @@ typedef function_table_entry *function_table_t;
 #endif /* mach_exc_MSG_COUNT */
 
 #include <mach/mach_types.h>
-#include <mach/mig.h>
 #include <mach/mig.h>
 #include <mach/std_types.h>
 
@@ -267,4 +265,4 @@ union __ReplyUnion__mach_exc_subsystem {
 __AfterMigUserHeader
 #endif /* __AfterMigUserHeader */
 
-#endif /* _mach_exc_user_ */
+#pragma once

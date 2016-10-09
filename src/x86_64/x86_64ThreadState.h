@@ -5,8 +5,7 @@
 //  Copyright © 2016 Satori. All rights reserved.
 //
 
-#ifndef _x86_64ThreadState_
-#define _x86_64ThreadState_
+#pragma once
 
 #include "ThreadState.h"
 
@@ -27,5 +26,3 @@ public:
     x86_debug_state64_t debug_state;
     x86_exception_state64_t exception_state;
 };
-
-#endif /* _x86_64ThreadState_ */

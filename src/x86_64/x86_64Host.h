@@ -3,7 +3,7 @@
 //
 //  Copyright © 2016 Satori. All rights reserved.
 //
-
+#pragma once
 #include "Host.h"
 
 class x86_64Host : public Host {

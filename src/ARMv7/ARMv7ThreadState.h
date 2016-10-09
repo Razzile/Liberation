@@ -3,9 +3,9 @@
 //
 //  Copyright © 2016 callum. All rights reserved.
 //
-
-#include <sys/types.h>
+#pragma once
 #include <mach/arm/thread_status.h>
+#include <sys/types.h>
 #include "ThreadState.h"
 
 class ARMv7ThreadState : public ThreadState {

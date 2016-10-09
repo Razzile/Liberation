@@ -3,7 +3,7 @@
 //
 //  Copyright © 2016 Satori. All rights reserved.
 //
-
+#pragma once
 #include "Breakpoint.h"
 
 class x86_64HardwareBreakpoint : public Breakpoint {
