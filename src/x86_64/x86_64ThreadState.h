@@ -4,7 +4,7 @@
 //
 //  Copyright © 2016 Satori. All rights reserved.
 //
-
+#pragma once
 #include "ThreadState.h"
 
 #if defined(__x86_64__)  // we're targeting an x86 system
