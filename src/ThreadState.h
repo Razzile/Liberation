@@ -5,8 +5,7 @@
 //  Copyright © 2016 Satori. All rights reserved.
 //
 
-#ifndef ThreadState_h
-#define ThreadState_h
+#pragma once
 
 #include <mach/mach.h>
 #include <string>
@@ -69,5 +68,3 @@ protected:
     mach_port_t _thread;
     std::vector<Register> _registers;
 };
-
-#endif /* ThreadState_h */

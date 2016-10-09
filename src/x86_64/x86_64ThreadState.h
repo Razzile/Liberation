@@ -5,8 +5,7 @@
 //  Copyright © 2016 Satori. All rights reserved.
 //
 
-#ifndef _x86_64ThreadState_
-#define _x86_64ThreadState_
+#pragma once
 
 #include "ThreadState.h"
 
@@ -36,5 +35,3 @@ public:
 using x86_64ThreadState = NOPThreadState;
 
 #endif /* _x86_64_ */
-
-#endif /* _x86_64ThreadState_ */

@@ -3,7 +3,7 @@
 //
 //  Copyright © 2016 Satori. All rights reserved.
 //
-
+#pragma once
 #include "Host.h"
 
 class ARMv7Host : public Host {

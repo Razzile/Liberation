@@ -3,7 +3,7 @@
 //
 //  Copyright © 2016 Satori. All rights reserved.
 //
-
+#pragma once
 #include <sys/types.h>
 
 enum class Platform : unsigned { x86_64, ARMv7, AArch64, UNKNOWN = 0xFFFFFFFF };

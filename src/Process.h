@@ -5,8 +5,7 @@
 //  Copyright © 2016 Satori. All rights reserved.
 //
 
-#ifndef _Process_
-#define _Process_
+#pragma once
 
 #include <mach/mach.h>
 #include <sys/types.h>
@@ -93,5 +92,3 @@ private:
     task_t _task;
     bool _paused;
 };
-
-#endif /* _Process_ */
