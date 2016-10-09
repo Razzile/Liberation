@@ -10,6 +10,8 @@
 
 #include "ThreadState.h"
 
+#if defined(__x86_64__)  // we're targeting an x86 system
+
 extern const char *thread_registers[];
 extern const char *debug_registers[];
 
@@ -27,5 +29,12 @@ public:
     x86_debug_state64_t debug_state;
     x86_exception_state64_t exception_state;
 };
+
+#else  // we're targeting something else (likely ARM)
+
+#include "NOPThreadState.h"
+using x86_64ThreadState = NOPThreadState;
+
+#endif /* _x86_64_ */
 
 #endif /* _x86_64ThreadState_ */
