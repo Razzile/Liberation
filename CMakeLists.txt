@@ -14,6 +14,7 @@ file(GLOB liberation_SRC
    "src/*.cc"
    "src/*.c"
 )
+
 if (NOT DEFINED IOS_PLATFORM)
     file(GLOB liberation_arch_specific_SRC
         "src/x86_64/*.cc"
@@ -24,12 +25,16 @@ else()
         "src/AArch64/*.cc"
     )
 endif()
-# src/main.cc src/Process.cc src/ExceptionHandler.cc
-# src/mach_excServer.c src/mach_excUser.c
-# src/BreakpointHandler.cc src/breakpoint.cc src/AArch64/AArch64Host.cc
-# src/ARMv7/ARMv7Host.cc src/ARMv7/ARMv7Breakpoint.cc src/AArch64/AArch64Breakpoint.cc
 
-add_executable(reginject ${liberation_SRC} ${liberation_arch_specific_SRC})
+file(GLOB liberation_test_SRC
+        "tests/*.cc"
+)
+
+add_library(reginject STATIC ${liberation_SRC} ${liberation_arch_specific_SRC})
+
+add_executable(reginject_test ${liberation_test_SRC})
+
+target_link_libraries(reginject_test reginject)
 
 add_custom_target(install
     COMMAND make

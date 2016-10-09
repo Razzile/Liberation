@@ -1,6 +1,6 @@
 #include "../src/Process.h"
 #include <string.h>
-int main() {
+int ___main() {
   int pid;
 
   printf("pid: ");
