@@ -5,8 +5,6 @@
 //  Copyright © 2016 Satori. All rights reserved.
 //
 
-#pragma once
-
 #include "ThreadState.h"
 
 extern const char *thread_registers[];
