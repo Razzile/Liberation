@@ -4,6 +4,8 @@
 //  Copyright © 2016 Satori. All rights reserved.
 //
 
+#pragma once
+
 #include "Breakpoint.h"
 
 class AArch64HardwareBreakpoint : public Breakpoint {
