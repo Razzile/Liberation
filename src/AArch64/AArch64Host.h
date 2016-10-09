@@ -4,6 +4,8 @@
 //  Copyright © 2016 Satori. All rights reserved.
 //
 
+#pragma once
+
 #include "Host.h"
 
 class AArch64Host : public Host {
