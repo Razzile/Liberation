@@ -11,10 +11,10 @@
 class NOPBreakpoint : public Breakpoint {
 public:
     virtual bool Apply() {
-        throw std::runtime_error("Incorrect Thread State generated");
+        throw std::runtime_error("NOP implementation called");
     };
 
     virtual bool Reset() {
-        throw std::runtime_error("Incorrect Thread State generated");
+        throw std::runtime_error("NOP implementation called");
     };
 };
