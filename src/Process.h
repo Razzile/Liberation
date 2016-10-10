@@ -11,6 +11,7 @@
 #include <sys/types.h>
 #include <string>
 #include <vector>
+#include "Host.h"
 #include "ThreadState.h"
 
 // TODO: find a vetter way to do this
@@ -70,6 +71,8 @@ public:
     bool Resume();
 
     bool InjectLibrary(const char *lib);  // TODO: add this at later date
+
+    enum Platform RunningPlatform();
 
     // can ref values be used with virtual classes?
     std::vector<ThreadState *> Threads(

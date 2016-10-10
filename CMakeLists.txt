@@ -8,7 +8,16 @@ endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -std=c++11 -stdlib=libc++ ")
 
-include_directories("${CMAKE_SOURCE_DIR}/src")
+file(GLOB_RECURSE reginject_HEADERS "src/*.h")
+
+set (reginject_INCLUDE_DIRS "")
+foreach (_headerFile ${reginject_HEADERS})
+    get_filename_component(_dir ${_headerFile} PATH)
+    list (APPEND reginject_INCLUDE_DIRS ${_dir})
+endforeach()
+list(REMOVE_DUPLICATES reginject_INCLUDE_DIRS)
+
+include_directories(${reginject_INCLUDE_DIRS})
 
 file(GLOB liberation_SRC
    "src/*.cc"

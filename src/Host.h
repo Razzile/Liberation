@@ -8,7 +8,7 @@
 
 #include <sys/types.h>
 
-enum class Platform : unsigned { x86_64, ARMv7, AArch64, UNKNOWN = 0xFFFFFFFF };
+enum class Platform : unsigned { x86, x86_64, ARMv7, AArch64, UNKNOWN = 0xFFFFFFFF };
 
 class Host {
 public:

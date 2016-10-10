@@ -4,10 +4,14 @@
 //
 //  Copyright © 2016 Satori. All rights reserved.
 //
-
 #include "Process.h"
 #include <stdlib.h>
+#include <sys/proc_info.h>
 #include "Host.h"
+
+#include "AArch64/AArch64ThreadState.h"
+#include "ARMv7/ARMv7ThreadState.h"
+#include "x86_64/x86_64ThreadState.h"
 
 #define PROC_ALL_PIDS 1
 
@@ -23,8 +27,9 @@ extern "C" char **_NSGetProgname();
         if (status != KERN_SUCCESS) return false; \
     } while (false)
 
-// XXX: the below non-member functions may not work in an iOS sandbox
-// TODO: redo these somewhere better
+    // XXX: the below non-member functions may not work in an iOS sandbox
+    // TODO: redo these somewhere better
+
 inline const char *NameForPID(int pid) {
     int numberOfProcesses = proc_listpids(PROC_ALL_PIDS, 0, NULL, 0);
     size_t sz = numberOfProcesses * sizeof(pid_t);
@@ -133,10 +138,25 @@ bool Process::InjectLibrary(const char *lib) {
     return false;
 }
 
+Platform Process::RunningPlatform() {
+// TODO: redo this using sysctl (hw.machine)
+#if defined(__arm__) || defined(__arm64__)
+    if (ti.pbsd.pbi_flags & PROC_FLAG_LP64)
+        return Platform::AArch64;
+    else
+        return Platform::ARMv7;
+#else
+    if (ti.pbsd.pbi_flags & PROC_FLAG_LP64)
+        return Platform::x86_64;
+    else
+        return Platform::x86;
+#endif
+}
+
 std::vector<ThreadState *> Process::Threads(mach_port_t ignore) {
     std::vector<ThreadState *> local;
 
-    Host *host = Host::CurrentHost();
+    Platform plt = this->RunningPlatform();
 
     thread_act_port_array_t threads;
     mach_msg_type_number_t count;
@@ -145,14 +165,24 @@ std::vector<ThreadState *> Process::Threads(mach_port_t ignore) {
     for (int i = 0; i < count; i++) {
         if (threads[i] == ignore) continue;
 
-        // switch (host->Platform()) {
-        //     case Platform::x86_64: {
-        //         local.push_back(new x86_64ThreadState(threads[i]));
-        //         break;
-        //     }
-        //     default:
-        //         break;
-        // }
+        switch (plt) {
+            case Platform::x86_64: {
+                local.push_back(new x86_64ThreadState(threads[i]));
+                break;
+            }
+
+            case Platform::ARMv7: {
+                local.push_back(new ARMv7ThreadState(threads[i]));
+                break;
+            }
+
+            case Platform::AArch64: {
+                local.push_back(new AArch64ThreadState(threads[i]));
+                break;
+            }
+            default:
+                break;
+        }
     }
     return local;
 }
