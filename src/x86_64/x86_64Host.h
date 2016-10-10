@@ -3,10 +3,12 @@
 //
 //  Copyright © 2016 Satori. All rights reserved.
 //
+
 #pragma once
+
 #include "Host.h"
 
-#if defined(__x86_64__)  // we're targeting an x86 system
+#if defined (__i386__) || defined(__x86_64__)  // we're targeting an x86 system
 
 class x86_64Host : public Host {
 public:

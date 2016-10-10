@@ -4,10 +4,12 @@
 //
 //  Copyright © 2016 Satori. All rights reserved.
 //
+
 #pragma once
+
 #include "ThreadState.h"
 
-#if defined(__x86_64__)  // we're targeting an x86 system
+#if defined (__i386__) || defined(__x86_64__) // we're targeting an x86 system
 
 extern const char *thread_registers[];
 extern const char *debug_registers[];
