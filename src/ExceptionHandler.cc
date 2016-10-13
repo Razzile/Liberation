@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include "BreakpointHandler.h"
 #include "Host.h"
+#include "Process.h"
 #include "mach_exc.h"
 
 extern "C" boolean_t mach_exc_server(mach_msg_header_t *, mach_msg_header_t *);
@@ -59,8 +60,15 @@ void *server_thread(void *arg) {
     return NULL;
 }
 
-ThreadState *Exception::ThreadState() {
-    return ThreadState::ThreadStateFromThread(_thread);
+ThreadState *Exception::ExceptionThreadState() {
+    pid_t pid;
+    kern_return_t status = pid_for_task(_task, &pid);
+    if (status != KERN_SUCCESS) return nullptr;
+
+    auto proc = Process::GetProcess(pid);
+    if (proc) {
+        return Process::ThreadState(proc.get(), _thread);
+    }
 }
 
 std::shared_ptr<ExceptionHandler> ExceptionHandler::SharedHandler() {
@@ -133,7 +141,7 @@ kern_return_t ExceptionHandler::ExceptionCallback(Exception &exception) {
     if (type != EXC_BREAKPOINT)
         return KERN_FAILURE;  // possibly MIG_DESTROY_REQUEST
 
-    ThreadState *state = exception.ThreadState();
+    ThreadState *state = exception.ExceptionThreadState();
     if (state) {
         printf("exception occured at 0x%llx\n", state->CurrentAddress());
         Breakpoint *bkpt =
@@ -145,6 +153,7 @@ kern_return_t ExceptionHandler::ExceptionCallback(Exception &exception) {
             }
             // cleanup
             state->Save();
+            delete state;
             bkptHandler->DisableBreakpoint(bkpt);
             thread_resume(exception._thread);
             return KERN_SUCCESS;

@@ -6,12 +6,8 @@
 //
 #include "Process.h"
 #include <stdlib.h>
-#include <sys/proc_info.h>
+#include <sys/sysctl.h>
 #include "Host.h"
-
-#include "AArch64/AArch64ThreadState.h"
-#include "ARMv7/ARMv7ThreadState.h"
-#include "x86_64/x86_64ThreadState.h"
 
 #define PROC_ALL_PIDS 1
 
@@ -27,8 +23,8 @@ extern "C" char **_NSGetProgname();
         if (status != KERN_SUCCESS) return false; \
     } while (false)
 
-    // XXX: the below non-member functions may not work in an iOS sandbox
-    // TODO: redo these somewhere better
+// XXX: the below non-member functions may not work in an iOS sandbox
+// TODO: redo these somewhere better
 
 inline const char *NameForPID(int pid) {
     int numberOfProcesses = proc_listpids(PROC_ALL_PIDS, 0, NULL, 0);
@@ -139,22 +135,22 @@ bool Process::InjectLibrary(const char *lib) {
 }
 
 Platform Process::RunningPlatform() {
-// TODO: redo this using sysctl (hw.machine)
+    int mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PID, _pid};
+    struct kinfo_proc kp;
+    size_t bufsize = sizeof(kp);
+    int err = sysctl(mib, sizeof(mib)/sizeof(int), &kp, &bufsize, NULL, 0);
+    if (err != 0) return Platform::UNKNOWN;
+
 #if defined(__arm__) || defined(__arm64__)
-    if (ti.pbsd.pbi_flags & PROC_FLAG_LP64)
-        return Platform::AArch64;
-    else
-        return Platform::ARMv7;
-#else
-    if (ti.pbsd.pbi_flags & PROC_FLAG_LP64)
-        return Platform::x86_64;
-    else
-        return Platform::x86;
+    return (kp.kp_proc.p_flag & P_LP64) ? Platform::AArch64 : Platform::ARMv7;
+#elif defined(__i386__) || defined(__x86_64__)
+    return (kp.kp_proc.p_flag & P_LP64) ? Platform::x86_64 : Platform::x86;
 #endif
+    return Platform::UNKNOWN;
 }
 
-std::vector<ThreadState *> Process::Threads(mach_port_t ignore) {
-    std::vector<ThreadState *> local;
+std::vector<::ThreadState *> Process::Threads(mach_port_t ignore) {
+    std::vector<::ThreadState *> local;
 
     Platform plt = this->RunningPlatform();
 
@@ -235,4 +231,35 @@ std::vector<Process::Region> Process::GetRegions(vm_prot_t options) {
         address += size;
     }
     return regions;
+}
+
+Process::ThreadState::ThreadState(mach_port_t task, mach_port_t thread)
+: state(nullptr) {
+    pid_t pid;
+    kern_return_t status = pid_for_task(task, &pid);
+    if (status != KERN_SUCCESS) return;
+
+    auto proc = Process::GetProcess(pid);
+
+    ThreadState(proc.get(), thread);
+}
+
+Process::ThreadState::ThreadState(Process *proc, mach_port_t thread)
+: state(nullptr) {
+    if (proc) {
+        switch (proc->RunningPlatform()) {
+            case Platform::ARMv7: {
+                state = new ARMv7ThreadState(thread);
+                break;
+            }
+            case Platform::AArch64: {
+                state = new AArch64ThreadState(thread);
+            }
+            case Platform::x86_64: {
+                state = new x86_64ThreadState(thread);
+            }
+        }
+    } else {
+        state = new NOPThreadState(thread);
+    }
 }

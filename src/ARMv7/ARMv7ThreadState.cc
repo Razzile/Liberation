@@ -68,12 +68,10 @@ bool ARMv7ThreadState::Save() {
     return true;
 }
 
-vm_address_t ARMv7ThreadState::CurrentAddress() {
-    return thread_state.__pc & ~0x1; 
+std::string ARMv7ThreadState::Description() {
+    return "TODO"; // TODO
 }
 
-#ifdef __arm__
-ThreadState *ThreadState::ThreadStateFromThread(mach_port_t thread) {
-    return new ARMv7ThreadState(thread);
+vm_address_t ARMv7ThreadState::CurrentAddress() {
+    return thread_state.__pc & ~0x1;
 }
-#endif

@@ -6,11 +6,10 @@
 
 #pragma once
 
-#if defined (__arm__) || defined (__arm64__)
-
-#include <mach/arm/thread_status.h>
 #include <sys/types.h>
 #include "ThreadState.h"
+
+#if defined (__arm__) || defined (__arm64__)
 
 class ARMv7ThreadState : public ThreadState {
 public:

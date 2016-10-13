@@ -79,7 +79,3 @@ std::string x86_64ThreadState::Description() {
 vm_address_t x86_64ThreadState::CurrentAddress() {
     return thread_state.__rip & ~0x1;
 }
-
-ThreadState *ThreadState::ThreadStateFromThread(mach_port_t thread) {
-    return new x86_64ThreadState(thread);
-}

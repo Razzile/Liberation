@@ -57,7 +57,24 @@ public:
         Region(vm_address_t start, size_t size) : start(start), size(size) {}
     };
 
-    static ProcessRef GetProcess(const char *name);
+    struct ThreadState {
+        using TS = ::ThreadState;
+        TS *state;
+
+        static ThreadState *CreateThreadState(mach_port_t thread, Process *proc = nullptr);
+
+        ThreadState() : state(nullptr) {}
+        ThreadState(TS *state) : state(state) {}
+
+        ThreadState(Process *proc, mach_port_t thread);
+        ThreadState(mach_port_t task, mach_port_t thread);
+
+        operator TS *() { return state; }
+        TS *operator->() { return state; }
+    };
+
+    static ProcessRef
+    GetProcess(const char *name);
     static ProcessRef GetProcess(int pid);
     static ProcessRef Self();
 
@@ -75,7 +92,7 @@ public:
     enum Platform RunningPlatform();
 
     // can ref values be used with virtual classes?
-    std::vector<ThreadState *> Threads(
+    std::vector<::ThreadState *> Threads(
         mach_port_t ignore = 0);  // TODO: return empty when not paused
 
     bool ReadMemory(vm_address_t address, char *output, size_t size);

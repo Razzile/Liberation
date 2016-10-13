@@ -26,7 +26,7 @@ public:
       _code(code),
       _code_count(code_count) {}
 
-    ThreadState *ThreadState();
+    ThreadState *ExceptionThreadState();
 
 protected:
     mach_port_t _exception_port;

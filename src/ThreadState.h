@@ -17,6 +17,8 @@
 class ThreadState {
 public:
     ThreadState(mach_port_t thread) : _thread(thread) {}
+
+    virtual ~ThreadState() = default;
     // nasty wrapper around a register from a thread state
     class Register {
     public:
@@ -50,8 +52,6 @@ public:
     virtual bool Save() = 0;
     virtual vm_address_t CurrentAddress() = 0;
 
-    static ThreadState *ThreadStateFromThread(mach_port_t thread);
-
     ThreadState::Register operator[](std::string key) {
         // nasty way to make string uppercase
         for (auto &c : key) c = toupper(c);
@@ -68,3 +68,7 @@ protected:
     mach_port_t _thread;
     std::vector<Register> _registers;
 };
+
+#include "AArch64/AArch64ThreadState.h"
+#include "ARMv7/ARMv7ThreadState.h"
+#include "x86_64/x86_64ThreadState.h"

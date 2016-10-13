@@ -8,6 +8,8 @@
 
 #include "Breakpoint.h"
 
+#if defined (__arm__) || defined (__arm64__)
+
 class AArch64HardwareBreakpoint : public Breakpoint {
 public:
     AArch64HardwareBreakpoint(Process *proc, vm_address_t addr)
@@ -28,3 +30,11 @@ public:
 protected:
     std::vector<uint8_t> _originalOpcode;
 };
+
+#else
+
+#include "NOPBreakpoint.h"
+using AArch64HardwareBreakpoint = NOPBreakpoint;
+using AArch64SoftwareBreakpoint = NOPBreakpoint;
+
+#endif
