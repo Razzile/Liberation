@@ -85,5 +85,5 @@ vm_address_t ARMv7ThreadState::CurrentAddress() {
 }
 
 bool ARMv7ThreadState::IsThumbMode() {
-    return (thread_state.__cpsr << 0x5) & 0x1;
+    return (thread_state.__cpsr >> 0x5) & 0x1;
 }

@@ -26,9 +26,9 @@ bool AArch64ThreadState::Load() {
     thread_get_state(_thread, ARM_DEBUG_STATE64, (thread_state_t)&debug_state,
                      &count);
 
-    // CPSR and PAD are 32 bits
     uint64_t *threadPtr = (uint64_t *)&thread_state;
 
+    // TODO: push Wx registers
     STATE_ADD_REGISTER(this, "X0",  threadPtr + 0);
     STATE_ADD_REGISTER(this, "X1",  threadPtr + 1);
     STATE_ADD_REGISTER(this, "X2",  threadPtr + 2);
@@ -65,6 +65,7 @@ bool AArch64ThreadState::Load() {
     STATE_ADD_REGISTER(this, "SP",  threadPtr + 33);
     STATE_ADD_REGISTER(this, "PC",  threadPtr + 34);
 
+    // CPSR and PAD are 32 bits
     STATE_ADD_REGISTER(this, "CPSR", &thread_state.__cpsr);
     STATE_ADD_REGISTER(this, "PAD",  &thread_state.__pad);
 

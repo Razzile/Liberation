@@ -9,15 +9,11 @@
 int ARMv7Host::HardwareBreakpointCount() {
 #ifdef __arm__
     {
-        static int count = -1;
-        if (count != -1) return count;
-
         uint32_t DBGDIDR;
         asm("mrc p14, 0, %0, c0, c0, 0" : "=r"(DBGDIDR));
-        int temp = ((DBGDIDR >> 24) & 0xF);
-        if (temp > 0) count = temp++;
-
-        return count;
+        int count = ((DBGDIDR >> 24) & 0xF);
+        if (count > 0) return count++;
+        else return 0;
     }
 #else
     return 0;  // oops
@@ -27,15 +23,11 @@ int ARMv7Host::HardwareBreakpointCount() {
 int ARMv7Host::HardwareWatchpointCount() {
 #ifdef __arm__
     {
-        static int count = -1;
-        if (count != -1) return count;
-
         uint32_t DBGDIDR;
         asm("mrc p14, 0, %0, c0, c0, 0" : "=r"(DBGDIDR));
-        int temp = ((DBGDIDR >> 28) & 0xF);
-        if (temp > 0) count = temp++;
-
-        return count;
+        int count = ((DBGDIDR >> 28) & 0xF);
+        if (count > 0) return count++;
+        else return 0;
     }
 #else
     return 0;  // oops
