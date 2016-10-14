@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <sys/types.h>
 #include "ThreadState.h"
 
 #if defined (__arm__) || defined (__arm64__)
@@ -19,7 +20,10 @@ public:
     virtual bool Save() override;
     virtual vm_address_t CurrentAddress() override;
 
-    // TODO: arm64 structs
+    arm_thread_state64_t thread_state;
+    arm_neon_state64_t neon_state;
+    arm_exception_state64_t exception_state;
+    arm_debug_state64_t debug_state;
 };
 
 #else
