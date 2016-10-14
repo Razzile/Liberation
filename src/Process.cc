@@ -254,9 +254,15 @@ Process::ThreadState::ThreadState(Process *proc, mach_port_t thread)
             }
             case Platform::AArch64: {
                 state = new AArch64ThreadState(thread);
+                break;
             }
             case Platform::x86_64: {
                 state = new x86_64ThreadState(thread);
+                break;
+            }
+            default: {
+                state = new NOPThreadState(thread);
+                break;
             }
         }
     } else {

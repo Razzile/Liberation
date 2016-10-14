@@ -65,12 +65,11 @@ bool x86_64ThreadState::Save() {
 }
 
 std::string x86_64ThreadState::Description() {
-    uint64_t *statePtr = (uint64_t *)&this->thread_state;
     std::ostringstream stream;
 
-    for (int i = 0; i < sizeof(x86_thread_state64_t) / sizeof(uint64_t); i++) {
-        uint64_t val = statePtr[i];
-        stream << thread_registers[i] << ": " << std::dec << val << " ["
+    for (auto &reg : _registers) {
+        uint64_t val = reg.Value<uint64_t>();
+        stream << reg.Name() << ": " << std::dec << val << " ["
                << std::hex << val << "]" << std::endl;
     }
     return stream.str();

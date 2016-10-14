@@ -20,6 +20,8 @@ public:
     virtual bool Save() override;
     virtual vm_address_t CurrentAddress() override;
 
+    bool IsThumbMode();
+
     arm_thread_state_t thread_state;
 
     // TODO: find out which of these states contains which float reg

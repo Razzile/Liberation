@@ -5,6 +5,7 @@
 //
 
 #include "ARMv7ThreadState.h"
+#include <sstream>
 
 bool ARMv7ThreadState::Load() {
     mach_msg_type_number_t count;
@@ -69,9 +70,20 @@ bool ARMv7ThreadState::Save() {
 }
 
 std::string ARMv7ThreadState::Description() {
-    return "TODO"; // TODO
+    std::ostringstream stream;
+
+    for (auto &reg : _registers) {
+        uint32_t val = reg.Value<uint32_t>();
+        stream << reg.Name() << ": " << std::dec << val << " ["
+               << std::hex << val << "]" << std::endl;
+    }
+    return stream.str();
 }
 
 vm_address_t ARMv7ThreadState::CurrentAddress() {
     return thread_state.__pc & ~0x1;
+}
+
+bool ARMv7ThreadState::IsThumbMode() {
+    return (thread_state.__cpsr << 0x5) & 0x1;
 }

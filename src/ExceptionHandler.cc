@@ -67,8 +67,10 @@ ThreadState *Exception::ExceptionThreadState() {
 
     auto proc = Process::GetProcess(pid);
     if (proc) {
-        return Process::ThreadState(proc.get(), _thread);
+        auto stateWrapper = new Process::ThreadState(proc.get(), _thread);
+        return stateWrapper->state;
     }
+    return nullptr;
 }
 
 std::shared_ptr<ExceptionHandler> ExceptionHandler::SharedHandler() {
@@ -143,7 +145,7 @@ kern_return_t ExceptionHandler::ExceptionCallback(Exception &exception) {
 
     ThreadState *state = exception.ExceptionThreadState();
     if (state) {
-        printf("exception occured at 0x%llx\n", state->CurrentAddress());
+        printf("exception occured at %p\n", (void *)state->CurrentAddress());
         Breakpoint *bkpt =
             bkptHandler->BreakpointAtAddress(state->CurrentAddress());
         if (bkpt && bkpt->active()) {

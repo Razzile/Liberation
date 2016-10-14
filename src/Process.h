@@ -58,23 +58,20 @@ public:
     };
 
     struct ThreadState {
-        using TS = ::ThreadState;
-        TS *state;
-
-        static ThreadState *CreateThreadState(mach_port_t thread, Process *proc = nullptr);
+        using ThreadStateRef = ::ThreadState*;
+        ThreadStateRef state;
 
         ThreadState() : state(nullptr) {}
-        ThreadState(TS *state) : state(state) {}
+        ThreadState(ThreadStateRef state) : state(state) {}
 
         ThreadState(Process *proc, mach_port_t thread);
         ThreadState(mach_port_t task, mach_port_t thread);
 
-        operator TS *() { return state; }
-        TS *operator->() { return state; }
+        operator ThreadStateRef () { return state; }
+        ThreadStateRef operator->() { return state; }
     };
 
-    static ProcessRef
-    GetProcess(const char *name);
+    static ProcessRef GetProcess(const char *name);
     static ProcessRef GetProcess(int pid);
     static ProcessRef Self();
 
